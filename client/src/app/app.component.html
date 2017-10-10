@@ -1,0 +1,28 @@
+<div class="background teal lighten-1">
+  <div style="text-align:center" class="col s10 links white container">
+    <div class="container linksHandler">
+      <div class="col s1 link hoverable"><a [routerLink]="['/']">Home</a></div>
+      <div class="col s1 link hoverable"><a [routerLink]="['/user']">User Profile</a></div>
+      <div class="col s1 link hoverable"><a [routerLink]="['/login']">Login</a></div>
+      <div class="col s1 link hoverable"><a [routerLink]="['/signup']">Signup</a></div>
+    </div>
+  </div>
+  <div class="col s4 sidebar red">
+    <div class="container orange userHandler">
+      <li> Username: <span *ngIf="user">{{user.username}}</span></li>
+    </div>
+    <div class="container orange userHandler">
+      <li> Messages: <a *ngIf="user">{{user.messages.length}}</a></li>
+    </div>
+    <div class="container orange userHandler">
+      <li>Posts: <span *ngIf="posts.length === 0">{{posts.length}}</span></li>
+      <ul *ngIf="posts.length > 1">
+        <li>{{post.title}}</li>
+        <li class="truncate">{{post.content}}</li>
+      </ul>
+      <button (click)="auth.logout().subscribe()"> logout </button>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

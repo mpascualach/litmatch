@@ -1,0 +1,15 @@
+<div *ngIf="formInfo">
+  <p>
+    editprofile works!
+  </p>
+
+  <form>
+    <label>Username</label> <input type="text" [(ngModel)]="formInfo.username" name="username" >
+    <label>Password</label> <input type="text" [(ngModel)]="formInfo.password" name="password" >
+    <label>Email</label> <input type="text" [(ngModel)]="formInfo.email" name="email" >
+    <label>Location</label> <input type="text" [(ngModel)]="formInfo.location" name="location">
+    <label>FavouriteGenre</label> <input type="text" [(ngModel)]="formInfo.favouriteGenre" name="favouriteGenre" >
+    <button (click)="editUser()">Edit user</button>
+  </form>
+
+</div>

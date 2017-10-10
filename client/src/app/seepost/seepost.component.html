@@ -1,0 +1,17 @@
+
+<div *ngIf="post" class="white col s8 container postPortrait">
+  <div class="container">
+    <div class="title">
+      <h3>{{post.title}}</h3>
+    </div>
+    <div class="textField">
+      <li>{{post.content}}</li>
+    </div>
+    <div *ngIf="user">
+      <button>Comment</button>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="post.comments" *ngFor="let comment in comments">
+  <li>{{comment.content}}</li>
+</div> -->

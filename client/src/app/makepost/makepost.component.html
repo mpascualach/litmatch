@@ -1,0 +1,17 @@
+
+<div class="col s7 container white formHandler">
+  <form class="newPostForm container" action="index.html" method="post">
+    <div class="textFields container">
+      <div class="component hoverable">
+        <span>Title:<input type="text" name="title" value="" [(ngModel)]="formInfo.title"></span>
+      </div>
+      <br>
+      <div class="component hoverable">
+        <textarea name="content" rows="8" cols="80" [(ngModel)]="formInfo.content"></textarea>
+      </div>
+      <div class="component">
+        <button type="button" (click)="makePost()">Send</button>
+      </div>
+    </div>
+  </form>
+</div>

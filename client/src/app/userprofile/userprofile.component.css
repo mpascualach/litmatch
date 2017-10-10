@@ -1,0 +1,11 @@
+.notLogged {
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 40px;
+  border: 1.5px solid black;
+  position: absolute;
+  left: 30%;
+}

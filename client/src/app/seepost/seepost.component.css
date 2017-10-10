@@ -1,0 +1,19 @@
+.postPortrait {
+  height: 450px;
+  margin: 0 auto;
+  margin-top: 80px;
+  text-align: center;
+  width: 55%;
+  list-style: none;
+}
+
+.textField {
+  height: 270px;
+  overflow-y: scroll;
+  border: 1.5px solid black;
+  text-align: start;
+}
+
+.postPortrait button {
+  margin-top: 10px;
+}
