@@ -10,19 +10,16 @@ import { EventEmitter } from '@angular/core';
 })
 export class AppComponent {
   user: object;
-  post: any;
-  constructor(private auth: AuthService, private posts: PostsService) {
+  postlist: any;
+  constructor(public auth: AuthService, public posts: PostsService) {
   };
 
   ngOnInit(){
-    this.auth.isLoggedIn().subscribe(user => {
+    this.auth.isLoggedIn()
+    .subscribe(user => {
       this.user = user
-    })
-    this.auth.getLoginEventEmitter()
-      .subscribe(user => {
-        console.log(this.user)
-        this.user = user
-      });
-    this.posts.listPostsById().subscribe(result => console.log(result))
+      this.posts.listPostsById()
+      .subscribe(postlist => {console.log(postlist); this.postlist=postlist})
+    });
   }
 }

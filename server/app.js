@@ -14,6 +14,7 @@ const commentRoutes = require('./routes/commentRoutes')
 const messageRoutes = require("./routes/messageRoutes")
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').load();
 
 const app = express();
 
@@ -61,6 +62,9 @@ app.use('/auth', authRoutes);
 app.use('/post', postRoutes);
 app.use('/comment', commentRoutes);
 app.use('/messages', messageRoutes);
+app.all('/*', function (req, res) {
+   res.sendFile(__dirname + '/public/index.html');
+ });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

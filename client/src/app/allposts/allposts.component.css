@@ -17,16 +17,16 @@ li {
 .portalContainer {
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .postPortal {
   border: 4px solid black;
   padding: 20px 5px;
-  width: 70%;
   margin: 0 auto;
   opacity: 0.8;
   margin-top: 30px;
-  height: 570px;
+  height: 540px;
   overflow-y: scroll;
 }
 
@@ -37,7 +37,7 @@ li {
   padding: 5px;
 }
 
-.post {
+.indivpost {
   border: 1px solid black;
   padding: 5px 20px;
   margin: 5px;
@@ -67,6 +67,17 @@ li {
 }
 
 .makePost {
+  width: 20%;
   margin: 0 auto;
-  margin-top: 5px;
+}
+
+.button-handler {
+  background-color: white;
+  opacity: 0.9;
+  position: relative;
+  width: 78%;
+  border-radius: 5px;
+  bottom: 48px;
+  border: 1px solid black;
+  padding: 3px;
 }

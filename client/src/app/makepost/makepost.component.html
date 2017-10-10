@@ -2,6 +2,9 @@
 <div class="col s7 container white formHandler">
   <form class="newPostForm container" action="index.html" method="post">
     <div class="textFields container">
+      <div class="component title">
+        <h5>Incoming New Post <span class="credit">by <a [routerLink]="['user']">{{user.username}}</a> :</span></h5>
+      </div>
       <div class="component hoverable">
         <span>Title:<input type="text" name="title" value="" [(ngModel)]="formInfo.title"></span>
       </div>

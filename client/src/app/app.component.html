@@ -15,12 +15,14 @@
       <li> Messages: <a *ngIf="user">{{user.messages.length}}</a></li>
     </div>
     <div class="container orange userHandler">
-      <li>Posts: <span *ngIf="posts.length === 0">{{posts.length}}</span></li>
+      <li>Posts:
+        <span *ngIf="posts.length === 0">{{posts.length}}</span>
+      </li>
       <ul *ngIf="posts.length > 1">
         <li>{{post.title}}</li>
         <li class="truncate">{{post.content}}</li>
       </ul>
-      <button (click)="auth.logout().subscribe()"> logout </button>
+      <button class="logout" (click)="auth.logout().subscribe()"> logout </button>
     </div>
   </div>
   <router-outlet></router-outlet>

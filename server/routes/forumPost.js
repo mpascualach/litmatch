@@ -18,8 +18,7 @@ postRoutes.get('/list', (req, res, next) => {
 })
 
 postRoutes.get('/listbyId', (req,res,next)=>{
-  console.log("entroo")
-  console.log(req.user);
+  console.log("entroo"+req.user)
   Post.find({creator: req.user._id})
   .then(posts => res.status(200).json(posts))
 })
@@ -41,7 +40,6 @@ postRoutes.post('/makepost', (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  req.body.user.posts.push(newPost);
   newPost.save((err) => {
     if (err) {
       res.status(400).json({

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery'
 
 
+
+
 @Component({
   selector: 'app-allposts',
   templateUrl: './allposts.component.html',
@@ -14,8 +16,9 @@ import * as $ from 'jquery'
 export class AllpostsComponent implements OnInit {
   user:any;
   posts;
+  post;
   title = 'LitMatch';
-  constructor(private post: PostsService, public auth: AuthService,
+  constructor(private Post: PostsService, public auth: AuthService,
     public router: Router) {
     this.user = this.auth.getUser();
     this.auth.getLoginEventEmitter()
@@ -23,7 +26,7 @@ export class AllpostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.post.listPosts()
+    this.Post.listPosts()
       .subscribe((posts) => {
         this.posts = posts;
       });
@@ -37,8 +40,19 @@ export class AllpostsComponent implements OnInit {
     $(".content").toggleClass("truncate");
   }
 
-  comment(){
-    
+  comment(post){
+    console.log(post._id);
+    $(`.indivpost${post._id} > .comment`).toggleClass("hide");
+    $(".fortextarea").hide();
+  }
+
+  goBack(post){
+    $(".fortextarea").show()
+    $(`.indivpost${post._id} > .comment`).toggleClass("hide");
+  }
+
+  sendComment(post){
+
   }
 
 }

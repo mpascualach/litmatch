@@ -1,7 +1,7 @@
 const path = require('path');
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const mongoose = require('mongoose');
-const dbURL = process.env.DBURL || 'mongodb://localhost/litmatch';
+const dbURL = process.env.MONGO_URL;
 
 mongoose.connect(dbURL)
   .then(() => debug(`connected to database ${dbURL}`))

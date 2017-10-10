@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import 'materialize-css';
+import { MaterializeModule } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { AuthService } from './services/auth.service';
@@ -16,6 +18,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { MakecommentComponent } from './makecomment/makecomment.component';
 import { MakepostComponent } from './makepost/makepost.component';
 import { SeepostComponent } from './seepost/seepost.component';
+
 
 @NgModule({
   declarations: [

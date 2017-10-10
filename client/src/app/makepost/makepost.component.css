@@ -34,10 +34,23 @@
 
 .component input {
   width: 85%;
+  height: 19px;
   overflow-x: auto;
 }
 
 .component button {
   margin-left: 45%;
   margin-top: 10px;
+}
+
+.title {
+  text-align: center;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+.credit {
+  font-size: 14px;
 }

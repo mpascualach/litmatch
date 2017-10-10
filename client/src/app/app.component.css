@@ -43,3 +43,9 @@
 .userHandler {
   margin-top: 10px;
 }
+
+.sidebar .logout {
+  float: left;
+    margin-left: 39%;
+    margin-top: 8px;
+}

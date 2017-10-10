@@ -19,28 +19,13 @@ commentRoutes.get('/list', (req, res, next) => {
 })
 
 commentRoutes.post('/makecomment', Post, (req, res, next) => {
-  let content = req.body.content;
-
-  var newComment = new Comment({
-    content
+  const newComment = new Comment({
+    content: req.body.content
   });
 
-  newComment.save((err) => {
-    if (err) {
-      res.status(400).json({
-        message: "Something went wrong"
-      });
-    } else {
-      req.login(newComment, function(err) {
-        if (err) {
-          return res.status(500).json({
-            message: 'something went wrong :('
-          });
-        }
-        res.status(200).json(newComment);
-      });
-    }
-  })
+  newComment.save()
+  .then( request => {res.json({ message: 'New Request created!', id: newComment._id });})
+  .reject( err => {res.json(err); });
 });
 
 commentRoutes.put("/edit/:id", (req, res, next) => {

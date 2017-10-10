@@ -4,17 +4,23 @@
 <div class="portalContainer container">
   <div class="postPortal container white col s8">
     <h4 class="title col s6">Most recent posts</h4>
-    <ul *ngFor="let post of posts" class="post col s4 hoverable">
-       <li class="credit"> Posted by: <a href="#">{{post.creator.username}}</a> at {{post.creator.created_at}}</li>
+    <ul *ngFor="let post of posts" class="indivpost indivpost{{post._id}} col s4 hoverable">
+       <li class="credit"> Posted by: <a routerLink='/user/{{post.creator._id}}'>{{post.creator.username}}</a> at {{post.creator.created_at}}</li>
       <b>{{post.title}}</b>
       <li class="content truncate" (click)="show()">{{post.content}}</li>
       <div class="postLinks">
         <li><a routerLink="/post/{{post._id}}">See post - {{post.comments.length}} comments</a></li>
       </div>
       <li *ngIf="user">
-        <button (click)="comment()">Comment</button>
+        <button class="fortextarea" (click)="comment(post)">Comment</button>
       </li>
+      <div class="comment hide">
+        <textarea name="comment" rows="12" cols="80"></textarea>
+        <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
+      </div>
     </ul>
   </div>
-  <div *ngIf="user" class="makePost"><button (click)="makePost()">Make post</button></div>
+  <div class="container button-handler">
+    <div *ngIf="user" class="makePost"><button (click)="makePost()">Make post</button></div>
+  </div>
 </div>

@@ -11,10 +11,10 @@
   </div>
 </div>
 
-<div *ngIf="user" id="userCard">
-  <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre>
+<div *ngIf="user" id="userCard" class="profile col s9">
+  <h2> Username: {{user.username}}</h2>
+  <p> Favourite genre: {{user.favouriteGenre}} </p>
+  <p> Favourite books: {{user.books}}</p>
 
   <button (click)="edit()">Edit profile</button>
 </div>
