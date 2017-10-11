@@ -15,8 +15,10 @@ export class MakepostComponent implements OnInit {
   formInfo = {
     user: '',
     title: '',
-    content: ''
+    content: '',
+    category: ''
   };
+  categories:Array<string> = ["literature","exchange","writing"]
   constructor(private posts: PostsService, public auth: AuthService,
     public router: Router) {
 
@@ -29,7 +31,7 @@ export class MakepostComponent implements OnInit {
         console.log(this.user);
         this.user = user
       });
-    this.posts.listPostsById()
+    this.posts.listPostsById();
   }
 
   makePost() {

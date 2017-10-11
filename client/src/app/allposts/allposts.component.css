@@ -75,9 +75,12 @@ li {
   background-color: white;
   opacity: 0.9;
   position: relative;
-  width: 78%;
   border-radius: 5px;
   bottom: 48px;
   border: 1px solid black;
   padding: 3px;
+}
+
+.commentText{
+  height: 140px;
 }

@@ -2,16 +2,23 @@
 <div *ngIf="post" class="white col s8 container postPortrait">
   <div class="container">
     <div class="title">
-      <h3>{{post.title}}</h3>
+      <h5>{{post.title}}</h5>
     </div>
     <div class="textField">
       <li>{{post.content}}</li>
     </div>
+    <div class="commentsNumber">
+      <li>{{post.comments.length}} comment<span>s</span></li>
+    </div>
     <div *ngIf="user">
-      <button>Comment</button>
+      <button (click)="comment(post)">Comment</button>
+    </div>
+    <div class="comment hide">
+      <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
+      <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
     </div>
   </div>
 </div>
-<!-- <div *ngIf="post.comments" *ngFor="let comment in comments">
+<!-- <div *ngFor="let comment in comments">
   <li>{{comment.content}}</li>
 </div> -->

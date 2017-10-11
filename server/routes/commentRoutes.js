@@ -18,13 +18,19 @@ commentRoutes.get('/list', (req, res, next) => {
     });
 })
 
-commentRoutes.post('/makecomment', Post, (req, res, next) => {
+commentRoutes.post('/makecomment', (req, res, next) => {
+  console.log("Coming in")
   const newComment = new Comment({
+    creator: req.body.userId,
+    post: req.body.postId,
     content: req.body.content
   });
 
   newComment.save()
-  .then( request => {res.json({ message: 'New Request created!', id: newComment._id });})
+  .then( comment => {
+    Post.findByIdAndUpdate(req.body.postId, { $push: { comments: comment._id }}, {new: true})
+    .then(post => console.log(post))
+    })
   .reject( err => {res.json(err); });
 });
 

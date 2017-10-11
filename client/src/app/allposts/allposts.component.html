@@ -15,12 +15,14 @@
         <button class="fortextarea" (click)="comment(post)">Comment</button>
       </li>
       <div class="comment hide">
-        <textarea name="comment" rows="12" cols="80"></textarea>
+        <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
         <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
       </div>
     </ul>
   </div>
-  <div class="container button-handler">
-    <div *ngIf="user" class="makePost"><button (click)="makePost()">Make post</button></div>
+  <div class="container col s8">
+    <div *ngIf="user" class="container button-handler hoverable">
+      <div class="makePost"><button (click)="makePost()">Make post</button></div>
+    </div>
   </div>
 </div>

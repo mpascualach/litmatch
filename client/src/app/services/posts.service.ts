@@ -57,8 +57,9 @@ export class PostsService {
     .catch(this.handleError);
   }
 
-  makeComment(){
-    return this.http.post(`${BASEURL2}/makecomment`, this.options)
+  makeComment(postId,content, userId){
+    console.log(postId + " " + content);
+    return this.http.post(`${BASEURL2}/makecomment`, {postId, content, userId}, this.options)
     .map(res => res.json())
     .catch(this.handleError);
   }

@@ -4,9 +4,6 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery'
 
-
-
-
 @Component({
   selector: 'app-allposts',
   templateUrl: './allposts.component.html',
@@ -15,9 +12,12 @@ import * as $ from 'jquery'
 })
 export class AllpostsComponent implements OnInit {
   user:any;
-  posts;
-  post;
+  posts:any;
+  post:any;
   title = 'LitMatch';
+  formInfo = {
+    content: ""
+  }
   constructor(private Post: PostsService, public auth: AuthService,
     public router: Router) {
     this.user = this.auth.getUser();
@@ -52,7 +52,10 @@ export class AllpostsComponent implements OnInit {
   }
 
   sendComment(post){
-
+    this.Post.makeComment(post._id, this.formInfo.content, this.user._id)
+    .subscribe(comment => {console.log(comment); post.comments.push(comment)})
+    $(".fortextarea").show()
+    $(`.indivpost${post._id} > .comment`).toggleClass("hide");
   }
 
 }
