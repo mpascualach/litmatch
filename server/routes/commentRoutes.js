@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const path = require('path');
 const Comment = require('../models/Comment');
+const User = require('../models/User');
 const Post = require('../models/Post');
 const bcrypt = require('bcrypt');
 const debug = require('debug')("angularauth:" + path.basename(__filename).split('.')[0]);
@@ -19,10 +20,8 @@ commentRoutes.get('/list', (req, res, next) => {
 })
 
 commentRoutes.post('/makecomment', (req, res, next) => {
-  console.log("Coming in")
   const newComment = new Comment({
     creator: req.body.userId,
-    post: req.body.postId,
     content: req.body.content
   });
 

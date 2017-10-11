@@ -18,6 +18,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { MakecommentComponent } from './makecomment/makecomment.component';
 import { MakepostComponent } from './makepost/makepost.component';
 import { SeepostComponent } from './seepost/seepost.component';
+import { EditpostComponent } from './editpost/editpost.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SeepostComponent } from './seepost/seepost.component';
     EditprofileComponent,
     MakecommentComponent,
     MakepostComponent,
-    SeepostComponent
+    SeepostComponent,
+    EditpostComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-
 <div *ngIf="post" class="white col s8 container postPortrait">
   <div class="container">
     <div class="title">
@@ -11,14 +10,22 @@
       <li>{{post.comments.length}} comment<span>s</span></li>
     </div>
     <div *ngIf="user">
-      <button (click)="comment(post)">Comment</button>
+      <button class="commentButton"(click)="comment(post)">Comment</button>
+      <button class="editButton" (click)="gotoEdit(post)">Edit</button>
     </div>
-    <div class="comment hide">
+    <div class="commentBox hide container">
       <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
-      <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
+      <div class="newButtons container">
+        <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
+      </div>
     </div>
   </div>
 </div>
-<!-- <div *ngFor="let comment in comments">
-  <li>{{comment.content}}</li>
-</div> -->
+<div *ngFor="let comment of comments" class="indivcomment white" (load)="alternateColor()">
+  <li><div class="indivCredit">
+    By <a href="#">{{comment.creator.username}}</a>
+  </div></li>
+  <li><div class="indivContent">
+    {{comment.content}}
+  </div></li>
+</div>

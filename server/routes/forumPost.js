@@ -5,10 +5,11 @@ const Post = require('../models/Post');
 const bcrypt = require('bcrypt');
 const debug = require('debug')("angularauth:" + path.basename(__filename).split('.')[0]);
 const User = require ('../models/User')
+const Comment = require('../models/Comment')
 var postRoutes = express.Router();
 
 postRoutes.get('/list', (req, res, next) => {
-  Post.find().populate("creator")
+  Post.find().sort('-created_at').populate("creator")
     .then(list => {
       res.json(list);
     })
@@ -24,7 +25,7 @@ postRoutes.get('/listbyId', (req,res,next)=>{
 })
 
 postRoutes.get('/:id', (req, res, next) => {
-  Post.findById(req.params.id)
+  Post.findById(req.params.id).populate("comments").populate("creator")
     .then(singlePost => {
       res.json(singlePost);
     })
@@ -34,28 +35,17 @@ postRoutes.get('/:id', (req, res, next) => {
 })
 
 postRoutes.post('/makepost', (req, res, next) => {
-  console.log(req.body);
   let newPost = new Post({
     creator: req.body.user,
     title: req.body.title,
     content: req.body.content,
   });
-  newPost.save((err) => {
-    if (err) {
-      res.status(400).json({
-        message: "Something went wrong"
-      });
-    } else {
-      req.login(newPost, function(err) {
-        if (err) {
-          return res.status(500).json({
-            message: 'something went wrong :('
-          });
-        }
-        res.status(200).json(newPost);
-      });
-    }
-  });
+  newPost.save()
+  .then(result =>
+
+     res.status(200).json(result))
+  .catch(err => console.log(err))
+
 });
 
 postRoutes.put("/edit/:id", (req, res, next) => {
@@ -63,7 +53,6 @@ postRoutes.put("/edit/:id", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   };
-  console.log(updates)
   Post.findByIdAndUpdate(req.params.id, updates, (err) => {
     if (err) {
       return res.status(400).json({

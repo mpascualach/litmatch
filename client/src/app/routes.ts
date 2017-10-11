@@ -5,6 +5,7 @@ import { SeepostComponent } from './seepost/seepost.component';
 import { MakecommentComponent } from './makecomment/makecomment.component';
 import { MakepostComponent } from './makepost/makepost.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
+import { EditpostComponent } from './editpost/editpost.component';
 import  { LoginformComponent } from './loginform/loginform.component';
 import  { SignupformComponent } from './signupform/signupform.component';
 import { AllpostsComponent } from './allposts/allposts.component';
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: 'comment', component: MakecommentComponent },
     ]
  },
+  { path: 'editpost/:id', component: EditpostComponent },
   { path: 'makepost', component: MakepostComponent },
   { path: 'user', component: UserprofileComponent,
     children: [

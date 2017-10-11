@@ -1,0 +1,24 @@
+<div class="col s7 container white formHandler">
+  <form class="newPostForm container" action="index.html" method="post">
+    <div class="textFields container">
+      <div class="component title">
+        <h5>Incoming New Post <span class="credit">by <a [routerLink]="['user']">{{user.username}}</a> :</span></h5>
+      </div>
+      <div class="component hoverable">
+        <span>Title:<input type="text" name="title" class="editTitle" value="{{post.title}}" [(ngModel)]="formInfo.title"></span>
+      </div>
+      <br>
+      <div class="component hoverable">
+        <textarea name="content" class="editContent" rows="8" cols="80" value="{{post.content}}" [(ngModel)]="formInfo.content"></textarea>
+      </div>
+      <div class="category">
+        <select name="category" class="component category" [(ngModel)]="formInfo.category" *ngFor="let category of categories">
+          <option value="{{category}}"></option>
+        </select>
+      </div>
+      <div class="component">
+        <button type="button" (click)="makePost()">Send</button>
+      </div>
+    </div>
+  </form>
+</div>

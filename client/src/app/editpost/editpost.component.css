@@ -1,0 +1,58 @@
+.formHandler {
+  margin: 0 auto;
+  margin-top: 40px;
+  height: 550px;
+  width: 60%;
+  opacity: 0.8;
+}
+
+.newPostForm{
+  margin: 0 auto;
+  position: relative;
+  top: 40px;
+  height: 450px;
+  width: 90%;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  vertical-align: center
+}
+
+.textFields {
+  margin-top: 30px;
+  display: inline-block;
+}
+
+.component{
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+.component .editContent {
+  height: 200px;
+  color: grey;
+}
+
+.component .editTitle {
+  width: 85%;
+  overflow-x: auto;
+  color: grey;
+}
+
+.component button {
+  margin-left: 45%;
+  margin-top: 10px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+.credit {
+  font-size: 14px;
+}

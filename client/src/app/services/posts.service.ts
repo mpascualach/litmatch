@@ -58,8 +58,13 @@ export class PostsService {
   }
 
   makeComment(postId,content, userId){
-    console.log(postId + " " + content);
     return this.http.post(`${BASEURL2}/makecomment`, {postId, content, userId}, this.options)
+    .map(res => res.json())
+    .catch(this.handleError);
+  }
+
+  editPost(id, updates){
+    return this.http.put(`${BASEURL}/edit/${id}`, updates, this.options)
     .map(res => res.json())
     .catch(this.handleError);
   }
