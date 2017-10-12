@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { PostsService } from '../services/posts.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 
 import { Router } from '@angular/router';
@@ -16,11 +17,13 @@ interface Editprofile {
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
   styleUrls: ['./editprofile.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, PostsService]
 })
 
 export class EditprofileComponent implements OnInit {
   user: any;
+  posts: any;
+  postlist: any;
   formInfo = {
     username: "",
     password: "",
@@ -29,26 +32,31 @@ export class EditprofileComponent implements OnInit {
     favouriteGenre: ""
   };
   error: String;
-  constructor(public auth: AuthService, public router: Router) {
+  constructor(public auth: AuthService, public Post: PostsService, public router: Router) {
 
   }
 
   ngOnInit() {
-    this.user = this.auth.getUser();
+    this.auth.isLoggedIn()
+    .subscribe(user => {
+      this.user = user;
+      this.posts.listPostsById()
+      .subscribe(postlist => {console.log(postlist); this.postlist=postlist})
+    });
     this.auth.getLoginEventEmitter()
-        .subscribe( user => {
-          this.formInfo={
-            username:user.username,
-            password:user.password,
-            email:user.email,
-            location:user.location,
-            favouriteGenre:user.favouriteGenre
-          }
- });
-
+      .subscribe(user => {
+        this.formInfo = {
+          username: user.username,
+          password: user.password,
+          email: user.email,
+          location: user.location,
+          favouriteGenre: user.favouriteGenre
+        }
+      });
+      console.log(this.user)
   }
 
-  editUser(){
+  editUser() {
     this.auth.editUser(this.user._id, this.formInfo)
       .subscribe(
       (user) => this.successCb(user),

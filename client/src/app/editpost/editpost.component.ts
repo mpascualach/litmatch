@@ -37,8 +37,24 @@ export class EditpostComponent implements OnInit {
           this.post = post;
         })
       })
-    $("editTitle").on("change", function(){
-      $("editTitle").removeAttr("color")
-    })
+    }
+
+    editPost(post){
+      this.Post.editPost(this.post._id, this.formInfo)
+      .subscribe(
+      (user) => this.successCb(user),
+      (err) => this.errorCb(err)
+      );
+    }
+
+    errorCb(err) {
+      this.error = err;
+      this.user = null;
+    }
+
+    successCb(user) {
+      this.user = user;
+      this.error = null;
+      this.router.navigate(['/']);
     }
 }

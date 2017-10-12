@@ -63,6 +63,12 @@ export class PostsService {
     .catch(this.handleError);
   }
 
+  deleteComment(id){
+    return this.http.get(`${BASEURL2}/delete/${id}`, this.options)
+    .map(res => res.json())
+    .catch(this.handleError);
+  }
+
   editPost(id, updates){
     return this.http.put(`${BASEURL}/edit/${id}`, updates, this.options)
     .map(res => res.json())

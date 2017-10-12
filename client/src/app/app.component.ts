@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { PostsService } from './services/posts.service';
+import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +11,28 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  user: object;
+  user: any;
   postlist: any;
-  constructor(public auth: AuthService, public posts: PostsService) {
+  constructor(public auth: AuthService, public posts: PostsService,
+  private router: Router) {
   };
 
   ngOnInit(){
     this.auth.isLoggedIn()
     .subscribe(user => {
-      this.user = user
+      this.user = user;
       this.posts.listPostsById()
       .subscribe(postlist => {console.log(postlist); this.postlist=postlist})
     });
+  }
+
+  edit(){
+    this.router.navigate(['user']);
+    $("#userCard").hide();
+    this.router.navigate(['user',this.user._id,'edit'])
+  }
+
+  logout(){
+    this.auth.logout().subscribe(()=>this.router.navigate(['/']))
   }
 }

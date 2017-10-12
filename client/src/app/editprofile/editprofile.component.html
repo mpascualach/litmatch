@@ -3,13 +3,28 @@
     editprofile works!
   </p>
 
-  <form>
-    <label>Username</label> <input type="text" [(ngModel)]="formInfo.username" name="username" >
-    <label>Password</label> <input type="text" [(ngModel)]="formInfo.password" name="password" >
-    <label>Email</label> <input type="text" [(ngModel)]="formInfo.email" name="email" >
-    <label>Location</label> <input type="text" [(ngModel)]="formInfo.location" name="location">
-    <label>FavouriteGenre</label> <input type="text" [(ngModel)]="formInfo.favouriteGenre" name="favouriteGenre" >
-    <button (click)="editUser()">Edit user</button>
+  <form class="white editForm container">
+    <h5>Editing {{user.username}}'s profile</h5>
+    <div class="formHandler container">
+      <div class="component container">
+        <label>Username</label> <input type="text" [(ngModel)]="formInfo.username" name="username">
+      </div>
+      <div class="component container">
+        <label>Password</label> <input type="text" [(ngModel)]="formInfo.password" name="password">
+      </div>
+      <div class="component container">
+        <label>Email</label> <input type="text" [(ngModel)]="formInfo.email" name="email">
+      </div>
+      <div class="component container">
+        <label>Location</label> <input type="text" [(ngModel)]="formInfo.location" name="location">
+      </div>
+      <div class="component container">
+        <label>FavouriteGenre</label> <input type="text" [(ngModel)]="formInfo.favouriteGenre" name="favouriteGenre">
+      </div>
+      <div class="component container">
+        <button (click)="editUser()">Edit user</button>
+      </div>
+    </div>
   </form>
 
 </div>

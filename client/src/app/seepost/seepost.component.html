@@ -25,6 +25,7 @@
   <li><div class="indivCredit">
     By <a href="#">{{comment.creator.username}}</a>
   </div></li>
+  <button type="button" name="button" (click)="deleteComment(comment)">Delete</button>
   <li><div class="indivContent">
     {{comment.content}}
   </div></li>

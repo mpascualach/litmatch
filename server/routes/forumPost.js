@@ -9,7 +9,8 @@ const Comment = require('../models/Comment')
 var postRoutes = express.Router();
 
 postRoutes.get('/list', (req, res, next) => {
-  Post.find().sort('-created_at').populate("creator")
+  Post.find().sort('-created_at')
+  .populate("creator")
     .then(list => {
       res.json(list);
     })
@@ -18,14 +19,18 @@ postRoutes.get('/list', (req, res, next) => {
     });
 })
 
-postRoutes.get('/listbyId', (req,res,next)=>{
-  console.log("entroo"+req.user)
+postRoutes.get('/listbyId', (req,res)=>{
   Post.find({creator: req.user._id})
-  .then(posts => res.status(200).json(posts))
+  .then(posts => {console.log(req.user); res.json(posts);
+  })
+  .reject(err => {
+    res.status(500).json(err)
+  });
 })
 
+
 postRoutes.get('/:id', (req, res, next) => {
-  Post.findById(req.params.id).populate("comments").populate("creator")
+  Post.findById(req.params.id).populate({ path: "comments", populate: {path: "creator"}})
     .then(singlePost => {
       res.json(singlePost);
     })

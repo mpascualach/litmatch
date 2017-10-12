@@ -1,12 +1,13 @@
-.background{
+.background {
   position: fixed;
   width: 100%;
   height: 100%;
   background-image: url(http://www.thisiscolossal.com/wp-content/uploads/2017/06/library-1.jpg);
   background-size: cover;
-  box-shadow:inset 0 0 0 2000px rgba(224, 242, 241, 0.3);
+  box-shadow: inset 0 0 0 2000px rgba(224, 242, 241, 0.3);
   opacity: 0.9;
   background-color: green;
+  overflow-y: scroll;
 }
 
 .links {
@@ -15,7 +16,6 @@
   text-align: center;
   margin-top: 10px;
   height: 30px;
-
 }
 
 .link {
@@ -45,7 +45,11 @@
 }
 
 .sidebar .logout {
-  float: left;
-    margin-left: 39%;
-    margin-top: 8px;
+  float: right;
+  margin-top: 8px;
+}
+
+.sidebar .editProfile {
+  float: right;
+  margin-top: 8px;
 }

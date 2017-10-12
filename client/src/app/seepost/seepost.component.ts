@@ -33,7 +33,6 @@ export class SeepostComponent implements OnInit {
         this.Post.seePost(params.id).subscribe(post => {
           this.post = post;
           this.comments = post.comments;
-          
           // if (post.creator!=this.user._id){
           //   console.log("toggling");
           //   $(".editing").hide()
@@ -73,6 +72,11 @@ export class SeepostComponent implements OnInit {
     $(".fortextarea").show()
     $(`.comment`).toggleClass("hide");
     this.router.navigate(['/'])
+  }
+
+  deleteComment(comment){
+    console.log("deleting");
+    this.Post.deleteComment(comment._id);
   }
 
 }
