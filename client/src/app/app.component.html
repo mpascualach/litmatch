@@ -2,7 +2,6 @@
   <div style="text-align:center" class="col s10 links white container">
     <div class="container linksHandler">
       <div class="col s1 link hoverable"><a [routerLink]="['/']">Home</a></div>
-      <div *ngIf="user" class="col s1 link hoverable"><a routerLink="/user/{{user._id}}">User Profile</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/login']">Login</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/signup']">Signup</a></div>
     </div>
@@ -25,9 +24,9 @@
       </ul>
     </div>
     <div *ngIf="user" class="buttonHandler container">
-      <button class="editProfile" (click)="edit()">Edit profile</button>
+      <button class="editProfile" (click)="gotoProfile()">Go to profile</button>
       <br>
-      <button class="logout" (click)="logout()"> logout </button>
+      <button class="logout" (click)="logout()">Logout</button>
     </div>
   </div>
   <router-outlet></router-outlet>

@@ -64,10 +64,6 @@ body {
   float: right;
 }
 
-.buttonHandler button {
-  height: 20px;
-}
-
 .userPostHandler {
   text-align: start;
 }

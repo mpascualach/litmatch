@@ -71,16 +71,27 @@ li {
   margin: 0 auto;
 }
 
+.bottomBar {
+  position: relative;
+  bottom: 60px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px 45px;
+  width: 67.5%;
+  right: 4px;
+  height: 55px;
+  opacity: 0.9;
+}
+
 .button-handler {
   background-color: white;
   opacity: 0.9;
-  position: relative;
   border-radius: 5px;
-  bottom: 48px;
   border: 1px solid black;
   padding: 3px;
+  margin-top: 6px;
 }
 
-.commentText{
+.commentText {
   height: 140px;
 }

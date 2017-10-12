@@ -29,10 +29,8 @@ export class AppComponent {
     })
   }
 
-  edit(){
-    this.router.navigate(['user']);
-    $("#userCard").hide();
-    this.router.navigate(['user',this.user._id,'edit'])
+  gotoProfile(){
+    this.router.navigate(['user',this.user._id]);
   }
 
   logout(){
