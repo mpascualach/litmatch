@@ -46,6 +46,19 @@ authRoutes.post('/signup', (req, res, next) => {
   });
 });
 
+authRoutes.get('/logout', (req, res, next) => {
+  req.logout();
+  res.status(200).json({ message: 'Success' });
+});
+
+authRoutes.get('/loggedin', (req, res, next) => {
+  console.log(req.user)
+  if (req.isAuthenticated())
+    return res.status(200).json(req.user);
+  res.status(403).json({ message: 'Unauthorized' });
+});
+
+
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, failureDetails) => {
     if (err)
@@ -64,6 +77,12 @@ authRoutes.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+authRoutes.get("/:id", (req,res,next)=>{
+  User.findById(req.params.id)
+  .then(singleUser => {res.json(singleUser);})
+  .reject(err => { res.status(500).json(err)});
+})
+
 authRoutes.put("/:id/edit", (req, res ,next) => {
   const updates = {
     username: req.body.username,
@@ -81,16 +100,5 @@ authRoutes.put("/:id/edit", (req, res ,next) => {
   });
 });
 
-authRoutes.get('/logout', (req, res, next) => {
-  req.logout();
-  res.status(200).json({ message: 'Success' });
-});
-
-authRoutes.get('/loggedin', (req, res, next) => {
-  console.log(req.user)
-  if (req.isAuthenticated())
-    return res.status(200).json(req.user);
-  res.status(403).json({ message: 'Unauthorized' });
-});
 
 module.exports = authRoutes;

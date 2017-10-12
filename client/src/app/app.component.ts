@@ -15,15 +15,18 @@ export class AppComponent {
   postlist: any;
   constructor(public auth: AuthService, public posts: PostsService,
   private router: Router) {
+
   };
 
   ngOnInit(){
-    this.auth.isLoggedIn()
-    .subscribe(user => {
-      this.user = user;
-      this.posts.listPostsById(user._id)
-      .subscribe(postlist => {this.postlist=postlist; console.log(this.postlist)})
-    });
+    this.auth.getUser();
+    this.auth.getLoginEventEmitter()
+      .subscribe(user => {
+        this.user = user
+        this.posts.listPostsById(user._id)
+        .subscribe(postlist => {this.postlist=postlist; console.log(this.postlist)
+      });
+    })
   }
 
   edit(){

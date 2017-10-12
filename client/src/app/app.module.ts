@@ -19,6 +19,7 @@ import { MakecommentComponent } from './makecomment/makecomment.component';
 import { MakepostComponent } from './makepost/makepost.component';
 import { SeepostComponent } from './seepost/seepost.component';
 import { EditpostComponent } from './editpost/editpost.component';
+import  { SeeuserComponent } from './seeuser/seeuser.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { EditpostComponent } from './editpost/editpost.component';
     MakecommentComponent,
     MakepostComponent,
     SeepostComponent,
+    SeeuserComponent,
     EditpostComponent,
   ],
   imports: [

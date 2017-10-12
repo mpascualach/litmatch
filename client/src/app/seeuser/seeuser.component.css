@@ -1,0 +1,16 @@
+.userProfile {
+  padding: 10px;
+  padding-bottom: 30px;
+  width: 52%;
+  border: 1.5px solid black;
+  opacity: 0.9;
+  margin: 0 auto;
+  list-style: none;
+  text-align: center;
+  margin-top: 80px;
+  border-radius: 5px;
+}
+
+.userProfile .image {
+  color: grey;
+}

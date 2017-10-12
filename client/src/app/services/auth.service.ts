@@ -35,6 +35,12 @@ export class AuthService {
       return Observable.throw(e.json().message);
     }
 
+    seeUser(id){
+      return this.http.get(`${BASEURL}/${id}`, this.options)
+        .map(res => res.json())
+        .catch(this.handleError);
+    }
+
     signup(user) {
       return this.http.post(`${BASEURL}/signup`, user, this.options)
         .map(res => res.json())

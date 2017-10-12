@@ -1,7 +1,7 @@
 import { CanActivate } from '@angular/router';
 import { Injectable }  from '@angular/core';
 import { Observable }  from 'rxjs/Rx';
-
+import {environment} from '../../environments/environment';
 import {AuthService} from './auth.service';
 
 

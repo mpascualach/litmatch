@@ -61,7 +61,7 @@ body {
 
 .buttonHandler {
   display: inline-block;
-    float: right;
+  float: right;
 }
 
 .buttonHandler button {
@@ -69,7 +69,15 @@ body {
 }
 
 .userPostHandler {
-  border: 1px solid black;
-  margin: 0;
   text-align: start;
+}
+
+.indivUserPost {
+  margin-top: -14px;
+}
+
+.indivUserPost a {
+  color: black;
+  text-decoration: underline;
+  margin-left: 10px;
 }

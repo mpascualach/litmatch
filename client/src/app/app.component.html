@@ -2,27 +2,29 @@
   <div style="text-align:center" class="col s10 links white container">
     <div class="container linksHandler">
       <div class="col s1 link hoverable"><a [routerLink]="['/']">Home</a></div>
-      <div class="col s1 link hoverable"><a [routerLink]="['/user']">User Profile</a></div>
+      <div *ngIf="user" class="col s1 link hoverable"><a routerLink="/user/{{user._id}}">User Profile</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/login']">Login</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/signup']">Signup</a></div>
     </div>
   </div>
   <div class="col s4 sidebar red">
     <div class="container orange userHandler">
-      <li> Username: <span *ngIf="user">{{user.username}}</span></li>
+      <li><b> Username: </b><span *ngIf="user">{{user.username}}</span></li>
     </div>
     <div class="container orange userHandler">
-      <li> Messages: <a *ngIf="user">{{user.messages.length}}</a></li>
+      <li><b>Messages: </b><a *ngIf="user">{{user.messages.length}}</a></li>
     </div>
     <div class="container orange userHandler">
-      <li>Posts: {{postlist.length}}</li>
-      <ul *ngFor="let post of postlist" class="userPostHandler">
+      <li><b>Posts: </b></li>
+    </div>
+    <div class="container orange userHandler userPostHandle">
+      <ul *ngFor="let post of postlist" >
         <div class="indivUserPost truncate">
           <a href="#">{{post.title}}</a>
         </div>
       </ul>
     </div>
-    <div class="buttonHandler container">
+    <div *ngIf="user" class="buttonHandler container">
       <button class="editProfile" (click)="edit()">Edit profile</button>
       <br>
       <button class="logout" (click)="logout()"> logout </button>
