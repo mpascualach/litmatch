@@ -15,14 +15,16 @@
       <li> Messages: <a *ngIf="user">{{user.messages.length}}</a></li>
     </div>
     <div class="container orange userHandler">
-      <li>Posts:
-        <span *ngIf="posts.length === 0">{{posts.length}}</span>
-      </li>
-      <ul *ngIf="posts.length > 1">
-        <li>{{post.title}}</li>
-        <li class="truncate">{{post.content}}</li>
+      <li>Posts: {{postlist.length}}</li>
+      <ul *ngFor="let post of postlist" class="userPostHandler">
+        <div class="indivUserPost truncate">
+          <a href="#">{{post.title}}</a>
+        </div>
       </ul>
+    </div>
+    <div class="buttonHandler container">
       <button class="editProfile" (click)="edit()">Edit profile</button>
+      <br>
       <button class="logout" (click)="logout()"> logout </button>
     </div>
   </div>

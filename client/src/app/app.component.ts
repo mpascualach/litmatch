@@ -21,8 +21,8 @@ export class AppComponent {
     this.auth.isLoggedIn()
     .subscribe(user => {
       this.user = user;
-      this.posts.listPostsById()
-      .subscribe(postlist => {console.log(postlist); this.postlist=postlist})
+      this.posts.listPostsById(user._id)
+      .subscribe(postlist => {this.postlist=postlist; console.log(this.postlist)})
     });
   }
 

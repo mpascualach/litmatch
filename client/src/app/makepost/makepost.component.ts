@@ -31,7 +31,6 @@ export class MakepostComponent implements OnInit {
         console.log(this.user);
         this.user = user
       });
-    this.posts.listPostsById();
   }
 
   makePost() {

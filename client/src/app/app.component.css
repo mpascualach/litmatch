@@ -1,3 +1,7 @@
+body {
+  position: fixed;
+}
+
 .background {
   position: fixed;
   width: 100%;
@@ -45,11 +49,27 @@
 }
 
 .sidebar .logout {
-  float: right;
   margin-top: 8px;
+  position: relative;
+  left: 10px;
 }
 
 .sidebar .editProfile {
-  float: right;
   margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+.buttonHandler {
+  display: inline-block;
+    float: right;
+}
+
+.buttonHandler button {
+  height: 20px;
+}
+
+.userPostHandler {
+  border: 1px solid black;
+  margin: 0;
+  text-align: start;
 }

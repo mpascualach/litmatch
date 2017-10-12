@@ -30,7 +30,6 @@ export class EditpostComponent implements OnInit {
       .subscribe(user => {
         this.user = user
       });
-    this.Post.listPostsById();
     this.route.params
       .subscribe((params) => {
         this.Post.seePost(params.id).subscribe(post => {

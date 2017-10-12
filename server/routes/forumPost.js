@@ -19,8 +19,8 @@ postRoutes.get('/list', (req, res, next) => {
     });
 })
 
-postRoutes.get('/listbyId', (req,res)=>{
-  Post.find({creator: req.user._id})
+postRoutes.get('/listbyId/:id', (req,res)=>{
+  Post.find({creator: req.params.id}).sort('-created_at')
   .then(posts => {console.log(req.user); res.json(posts);
   })
   .reject(err => {

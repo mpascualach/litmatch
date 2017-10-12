@@ -50,8 +50,9 @@ export class PostsService {
     .catch(this.handleError);
   }
 
-  listPostsById(){
-    return this.http.get(`${BASEURL}/listbyId`, this.options)
+  listPostsById(a){
+    console.log(a)
+    return this.http.get(`${BASEURL}/listbyId/${a}`, this.options)
     .map(res => res.json())
     .map(posts => { this.postsUpdate.emit(posts); return posts})
     .catch(this.handleError);
