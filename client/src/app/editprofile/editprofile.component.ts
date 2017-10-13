@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 
 interface Editprofile {
   username: string;
-  password: string;
   email: string;
   location: string;
   favouriteGenre: string;
+  favouriteBook: string;
 }
 
 @Component({
@@ -26,7 +26,6 @@ export class EditprofileComponent implements OnInit {
   postlist: any;
   formInfo = {
     username: "",
-    password: "",
     email: "",
     location: "",
     favouriteGenre: "",
@@ -48,7 +47,6 @@ export class EditprofileComponent implements OnInit {
       .subscribe(user => {
         this.formInfo = {
           username: user.username,
-          password: user.password,
           email: user.email,
           location: user.location,
           favouriteGenre: user.favouriteGenre,
@@ -64,6 +62,7 @@ export class EditprofileComponent implements OnInit {
       (user) => this.successCb(user),
       (err) => this.errorCb(err)
       );
+      this.router.navigate(['/'])
   }
 
   errorCb(err) {
@@ -74,7 +73,6 @@ export class EditprofileComponent implements OnInit {
   successCb(user) {
     this.user = user;
     this.error = null;
-    this.router.navigate(['user']);
   }
 
 }

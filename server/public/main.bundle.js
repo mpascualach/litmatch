@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".editForm {\n  width: 50%;\n  padding: 5px;\n  opacity: 0.9;\n}\n\n.formHandler {\n  margin-top: 20px;\n}\n", ""]);
+exports.push([module.i, ".editForm {\n  width: 60%;\n  padding: 5px;\n  opacity: 0.9;\n  margin-top: 60px;\n  position: relative;\n  left: 50px;\n  padding: 30px;\n  border-radius: 5px;\n  border: 2px solid black;\n}\n\n.editForm h5 {\n  text-align: center;\n}\n\n.editForm button {\n  position: relative;\n  margin-left: 130px;\n}\n\n.formHandler {\n  margin-top: 20px;\n  border: 1px solid black;\n  border-radius: 5px;\n  padding: 10px;\n}\n", ""]);
 
 // exports
 
@@ -439,7 +439,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/editprofile/editprofile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"formInfo\">\n\n  <form class=\"white editForm container\">\n    <h5>Editing {{user.username}}'s profile</h5>\n    <div class=\"formHandler container\">\n      <div class=\"component container\">\n        <label>Username</label> <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\">\n      </div>\n      <div class=\"component container\">\n        <label>Password</label> <input type=\"text\" [(ngModel)]=\"formInfo.password\" name=\"password\">\n      </div>\n      <div class=\"component container\">\n        <label>Email</label> <input type=\"text\" [(ngModel)]=\"formInfo.email\" name=\"email\">\n      </div>\n      <div class=\"component container\">\n        <label>Location</label> <input type=\"text\" [(ngModel)]=\"formInfo.location\" name=\"location\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Genre</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteGenre\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Book</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteBook\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <button (click)=\"editUser()\">Edit user</button>\n      </div>\n    </div>\n  </form>\n\n</div>\n"
+module.exports = "<div *ngIf=\"formInfo\">\n\n  <form class=\"white editForm container\">\n    <h5>Editing {{user.username}}'s profile</h5>\n    <div class=\"formHandler container\">\n      <div class=\"component container\">\n        <label>Username</label> <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\">\n      </div>\n      <div class=\"component container\">\n        <label>Email</label> <input type=\"text\" [(ngModel)]=\"formInfo.email\" name=\"email\">\n      </div>\n      <div class=\"component container\">\n        <label>Location</label> <input type=\"text\" [(ngModel)]=\"formInfo.location\" name=\"location\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Genre</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteGenre\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Book</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteBook\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <button (click)=\"editUser()\">Edit user</button>\n      </div>\n    </div>\n  </form>\n\n</div>\n"
 
 /***/ }),
 
@@ -472,7 +472,6 @@ var EditprofileComponent = (function () {
         this.router = router;
         this.formInfo = {
             username: "",
-            password: "",
             email: "",
             location: "",
             favouriteGenre: "",
@@ -491,7 +490,6 @@ var EditprofileComponent = (function () {
             .subscribe(function (user) {
             _this.formInfo = {
                 username: user.username,
-                password: user.password,
                 email: user.email,
                 location: user.location,
                 favouriteGenre: user.favouriteGenre,
@@ -504,6 +502,7 @@ var EditprofileComponent = (function () {
         var _this = this;
         this.auth.editUser(this.user._id, this.formInfo)
             .subscribe(function (user) { return _this.successCb(user); }, function (err) { return _this.errorCb(err); });
+        this.router.navigate(['/']);
     };
     EditprofileComponent.prototype.errorCb = function (err) {
         this.error = err;
@@ -512,7 +511,6 @@ var EditprofileComponent = (function () {
     EditprofileComponent.prototype.successCb = function (user) {
         this.user = user;
         this.error = null;
-        this.router.navigate(['user']);
     };
     return EditprofileComponent;
 }());
@@ -1065,7 +1063,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/seeuser/seeuser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"userProfile container white\">\n  <li><img class=\"image\" [src]=\"\" alt=\"(profile pic goes here)\"></li>\n  <li><b>Username: </b>{{subjectUser.username}}</li>\n  <li>from {{subjectUser.location}} <span *ngIf=\"!subjectUser.favouriteGenre\">...</span></li>\n  <li><b>Preferred Genre: </b>{{subjectUser.favouriteGenre}} <span *ngIf=\"!subjectUser.favouriteGenre\">None at the moment</span></li>\n  <li><b>Collection of books: </b>{{subjectUser.favouriteBooks}}<span *ngIf=\"!subjectUser.favouriteBooks\">No collection registered</span></li>\n  <div *ngIf=\"user._id==subjectUser._id\"><button click=\"gotoEdit()\">Edit profile</button></div>\n</div>\n"
+module.exports = "\n<router-outlet>\n<div class=\"userProfile container white\">\n  <li><img class=\"image\" [src]=\"\" alt=\"(profile pic goes here)\"></li>\n  <li><b>Username: </b>{{subjectUser.username}}</li>\n  <li>from {{subjectUser.location}} <span *ngIf=\"!subjectUser.favouriteGenre\">...</span></li>\n  <li><b>Preferred Genre: </b>{{subjectUser.favouriteGenre}} <span *ngIf=\"!subjectUser.favouriteGenre\">None at the moment</span></li>\n  <li><b>Collection of books: </b>{{subjectUser.favouriteBooks}}<span *ngIf=\"!subjectUser.favouriteBooks\">No collection registered</span></li>\n  <div *ngIf=\"user._id==subjectUser._id\"><button (click)=\"gotoEdit()\">Edit profile</button></div>\n</div>\n"
 
 /***/ }),
 
@@ -1076,6 +1074,8 @@ module.exports = "\n\n<div class=\"userProfile container white\">\n  <li><img cl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SeeuserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1086,6 +1086,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1109,6 +1110,11 @@ var SeeuserComponent = (function () {
                 console.log(_this.subjectUser);
             });
         });
+    };
+    SeeuserComponent.prototype.gotoEdit = function () {
+        console.log("editing...");
+        __WEBPACK_IMPORTED_MODULE_3_jquery__(".userProfile").hide();
+        this.router.navigate(['user', this.user._id, 'edit']);
     };
     return SeeuserComponent;
 }());
@@ -1603,8 +1609,8 @@ var _a, _b;
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 // The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
-    BASEURL: ''
+    production: false,
+    BASEURL: 'http://localhost:3000'
 };
 //# sourceMappingURL=environment.js.map
 

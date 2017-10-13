@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-seeuser',
@@ -29,5 +30,11 @@ export class SeeuserComponent implements OnInit {
           console.log(this.subjectUser);
         })
       })
+    }
+
+    gotoEdit(){
+      console.log("editing...");
+      $(".userProfile").hide();
+      this.router.navigate(['user',this.user._id,'edit'])
     }
   }

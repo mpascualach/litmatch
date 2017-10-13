@@ -87,7 +87,6 @@ authRoutes.put("/:id/edit", (req, res ,next) => {
   const updates = {
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
     location: req.body.location,
     favouriteGenre: req.body.favouriteGenre,
     favouriteBook: req.body.favouriteBook
