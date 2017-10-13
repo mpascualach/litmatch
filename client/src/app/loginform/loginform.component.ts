@@ -32,7 +32,8 @@ export class LoginformComponent implements OnInit {
     this.auth.login(this.formInfo)
       .subscribe(
       (user) => this.successCb(user),
-      (err) => this.errorCb(err)
+      (err) => this.errorCb(err),
+      () => this.router.navigate([''])
       );
   }
 
@@ -44,7 +45,6 @@ export class LoginformComponent implements OnInit {
   successCb(user) {
     this.user = user;
     this.error = null;
-    this.router.navigate(['']);
   }
 
 }

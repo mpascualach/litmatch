@@ -21,8 +21,9 @@
     </ul>
   </div>
   <div class="container col s8 bottomBar grey">
-    <div *ngIf="user" class="container button-handler hoverable">
-      <div class="makePost"><button (click)="makePost()">Make post</button></div>
+    <div class="container button-handler hoverable">
+      <div class="makePost"><button *ngIf="user" (click)="makePost()">Make post</button>
+        <button class="reminderButton" (click)="gotoSignUp()"*ngIf="!user">Sign in to make posts :)</button></div>
     </div>
   </div>
 </div>

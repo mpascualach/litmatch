@@ -26,9 +26,9 @@ export class SignupformComponent implements OnInit {
     this.auth.signup(this.formInfo)
       .subscribe(
       (user) => this.successCb(user),
-      (err) => this.errorCb(err)
+      (err) => this.errorCb(err),
+      () => this.router.navigate(['/'])
       );
-    this.router.navigate(['/user/signup'])
   }
 
   errorCb(err) {
@@ -37,8 +37,8 @@ export class SignupformComponent implements OnInit {
   }
 
   successCb(user) {
-    this.user = user;
     this.error = null;
+    this.user = user;
   }
 
 }

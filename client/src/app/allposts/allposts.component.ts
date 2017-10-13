@@ -41,6 +41,10 @@ export class AllpostsComponent implements OnInit {
     this.router.navigate(['makepost']);
   }
 
+  gotoSignUp() {
+    this.router.navigate(['signup'])
+  }
+
   show() {
     $(".content").toggleClass("truncate");
   }

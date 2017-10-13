@@ -8,13 +8,15 @@
   </div>
   <div class="col s4 sidebar red">
     <div class="container orange userHandler">
-      <li><b> Username: </b><span *ngIf="user">{{user.username}}</span></li>
+      <li><b> Username: </b><span *ngIf="user">{{user.username}}
+      </span><span *ngIf="!user">Anonymous</span></li>
     </div>
     <div class="container orange userHandler">
-      <li><b>Messages: </b><a *ngIf="user">{{user.messages.length}}</a></li>
+      <li><b>Messages: </b><a *ngIf="user">{{user.messages.length}}</a>
+        <span *ngIf="!user">None</span></li>
     </div>
     <div class="container orange userHandler">
-      <li><b>Posts: </b></li>
+      <li><b>Posts: </b><span *ngIf="!user">None</span></li>
     </div>
     <div class="container orange userHandler userPostHandle">
       <ul *ngFor="let post of postlist" >

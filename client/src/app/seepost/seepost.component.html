@@ -6,6 +6,9 @@
     <div class="credit">
       <p>By <a routerLink="/user/{{post.creator._id}}">{{post.creator.username}}</a></p>
     </div>
+    <div *ngIf="post.creator._id===user._id" class="editButton">
+      <button (click)="gotoEdit()">Edit post</button>
+    </div>
     <div class="textField">
       <li>{{post.content}}</li>
     </div>

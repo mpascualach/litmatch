@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "li {\n  list-style: none;\n}\n\n.webTitle {\n  margin: 0 auto;\n  position: relative;\n  width: 40%;\n  text-align: center;\n  opacity: 0.8;\n  text-decoration: underline;\n  border-radius: 5px;\n  height: 65px;\n  margin-top: 10px;\n}\n\n.portalContainer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  width: 70%;\n}\n\n.postPortal {\n  border: 4px solid black;\n  padding: 20px 5px;\n  margin: 0 auto;\n  opacity: 0.8;\n  margin-top: 30px;\n  height: 540px;\n  overflow-y: scroll;\n}\n\n.title {\n  text-align: center;\n  margin-top: 0;\n  border: 1.5px solid black;\n  padding: 5px;\n}\n\n.indivpost {\n  border: 1px solid black;\n  padding: 5px 20px;\n  margin: 5px;\n  text-align: center;\n}\n\n.postLinks {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n\n.postLinks li {\n  margin: 0 5px;\n}\n\n.date {\n  font-size: 8px;\n}\n\n.credit {\n  font-size: 10px;\n}\n\n.content {\n  cursor: pointer;\n}\n\n.makePost {\n  width: 20%;\n  margin: 0 auto;\n}\n\n.bottomBar {\n  position: relative;\n  bottom: 60px;\n  border: 1px solid black;\n  border-radius: 5px;\n  padding: 3px 45px;\n  width: 67.5%;\n  right: 4px;\n  height: 55px;\n  opacity: 0.9;\n}\n\n.button-handler {\n  background-color: white;\n  opacity: 0.9;\n  border-radius: 5px;\n  border: 1px solid black;\n  padding: 3px;\n  margin-top: 6px;\n}\n\n.commentText {\n  height: 140px;\n}\n", ""]);
+exports.push([module.i, "li {\n  list-style: none;\n}\n\n.webTitle {\n  margin: 0 auto;\n  position: relative;\n  width: 40%;\n  text-align: center;\n  opacity: 0.8;\n  text-decoration: underline;\n  border-radius: 5px;\n  height: 65px;\n  margin-top: 10px;\n}\n\n.portalContainer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  width: 70%;\n}\n\n.postPortal {\n  border: 4px solid black;\n  padding: 20px 5px;\n  margin: 0 auto;\n  opacity: 0.8;\n  margin-top: 30px;\n  height: 540px;\n  overflow-y: scroll;\n}\n\n.title {\n  text-align: center;\n  margin-top: 0;\n  border: 1.5px solid black;\n  padding: 5px;\n}\n\n.indivpost {\n  border: 1px solid black;\n  padding: 5px 20px;\n  margin: 5px;\n  text-align: center;\n}\n\n.postLinks {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n\n.postLinks li {\n  margin: 0 5px;\n}\n\n.date {\n  font-size: 8px;\n}\n\n.credit {\n  font-size: 10px;\n}\n\n.content {\n  cursor: pointer;\n}\n\n.makePost {\n  width: 20%;\n  margin: 0 auto;\n}\n\n.bottomBar {\n  position: relative;\n  bottom: 60px;\n  border: 1px solid black;\n  border-radius: 5px;\n  padding: 3px 45px;\n  width: 67.5%;\n  right: 4px;\n  height: 55px;\n  opacity: 0.9;\n}\n\n.button-handler {\n  background-color: white;\n  opacity: 0.9;\n  border-radius: 5px;\n  border: 1px solid black;\n  padding: 3px;\n  margin-top: 6px;\n}\n\n.commentText {\n  height: 140px;\n}\n\n.reminderButton {\n  width: 200%;\n  position: relative;\n  right: 50px;\n}\n", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/allposts/allposts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col s4 webTitle white\">\n  <h2>{{title}}</h2>\n</div>\n<div class=\"portalContainer container\">\n  <div class=\"postPortal container white col s8\">\n    <h4 class=\"title col s6\">Most recent posts</h4>\n    <ul *ngFor=\"let post of posts\" class=\"indivpost indivpost{{post._id}} col s4 hoverable\">\n       <li class=\"credit\"> Posted by: <a routerLink='/user/{{post.creator._id}}'>{{post.creator.username}}</a> at {{post.creator.created_at}}</li>\n      <b>{{post.title}}</b>\n      <li class=\"content truncate\" (click)=\"show()\">{{post.content}}</li>\n      <div class=\"postLinks\">\n        <li><a routerLink=\"/post/{{post._id}}\">See post - {{post.comments.length}} comments</a></li>\n      </div>\n      <li *ngIf=\"user\">\n        <button class=\"fortextarea\" (click)=\"comment(post)\">Comment</button>\n      </li>\n      <div class=\"comment hide\">\n        <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </ul>\n  </div>\n  <div class=\"container col s8 bottomBar grey\">\n    <div *ngIf=\"user\" class=\"container button-handler hoverable\">\n      <div class=\"makePost\"><button (click)=\"makePost()\">Make post</button></div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"col s4 webTitle white\">\n  <h2>{{title}}</h2>\n</div>\n<div class=\"portalContainer container\">\n  <div class=\"postPortal container white col s8\">\n    <h4 class=\"title col s6\">Most recent posts</h4>\n    <ul *ngFor=\"let post of posts\" class=\"indivpost indivpost{{post._id}} col s4 hoverable\">\n       <li class=\"credit\"> Posted by: <a routerLink='/user/{{post.creator._id}}'>{{post.creator.username}}</a> at {{post.creator.created_at}}</li>\n      <b>{{post.title}}</b>\n      <li class=\"content truncate\" (click)=\"show()\">{{post.content}}</li>\n      <div class=\"postLinks\">\n        <li><a routerLink=\"/post/{{post._id}}\">See post - {{post.comments.length}} comments</a></li>\n      </div>\n      <li *ngIf=\"user\">\n        <button class=\"fortextarea\" (click)=\"comment(post)\">Comment</button>\n      </li>\n      <div class=\"comment hide\">\n        <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </ul>\n  </div>\n  <div class=\"container col s8 bottomBar grey\">\n    <div class=\"container button-handler hoverable\">\n      <div class=\"makePost\"><button *ngIf=\"user\" (click)=\"makePost()\">Make post</button>\n        <button class=\"reminderButton\" (click)=\"gotoSignUp()\"*ngIf=\"!user\">Sign in to make posts :)</button></div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -92,6 +92,9 @@ var AllpostsComponent = (function () {
     AllpostsComponent.prototype.makePost = function () {
         this.router.navigate(['makepost']);
     };
+    AllpostsComponent.prototype.gotoSignUp = function () {
+        this.router.navigate(['signup']);
+    };
     AllpostsComponent.prototype.show = function () {
         __WEBPACK_IMPORTED_MODULE_4_jquery__(".content").toggleClass("truncate");
     };
@@ -148,7 +151,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"background teal lighten-1\">\n  <div style=\"text-align:center\" class=\"col s10 links white container\">\n    <div class=\"container linksHandler\">\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/']\">Home</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/login']\">Login</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/signup']\">Signup</a></div>\n    </div>\n  </div>\n  <div class=\"col s4 sidebar red\">\n    <div class=\"container orange userHandler\">\n      <li><b> Username: </b><span *ngIf=\"user\">{{user.username}}</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Messages: </b><a *ngIf=\"user\">{{user.messages.length}}</a></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Posts: </b></li>\n    </div>\n    <div class=\"container orange userHandler userPostHandle\">\n      <ul *ngFor=\"let post of postlist\" >\n        <div class=\"indivUserPost truncate\">\n          <a href=\"#\">{{post.title}}</a>\n        </div>\n      </ul>\n    </div>\n    <div *ngIf=\"user\" class=\"buttonHandler container\">\n      <button class=\"editProfile\" (click)=\"gotoProfile()\">Go to profile</button>\n      <br>\n      <button class=\"logout\" (click)=\"logout()\">Logout</button>\n    </div>\n  </div>\n  <router-outlet></router-outlet>\n</div>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n"
+module.exports = "<div class=\"background teal lighten-1\">\n  <div style=\"text-align:center\" class=\"col s10 links white container\">\n    <div class=\"container linksHandler\">\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/']\">Home</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/login']\">Login</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/signup']\">Signup</a></div>\n    </div>\n  </div>\n  <div class=\"col s4 sidebar red\">\n    <div class=\"container orange userHandler\">\n      <li><b> Username: </b><span *ngIf=\"user\">{{user.username}}\n      </span><span *ngIf=\"!user\">Anonymous</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Messages: </b><a *ngIf=\"user\">{{user.messages.length}}</a>\n        <span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Posts: </b><span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler userPostHandle\">\n      <ul *ngFor=\"let post of postlist\" >\n        <div class=\"indivUserPost truncate\">\n          <a href=\"#\">{{post.title}}</a>\n        </div>\n      </ul>\n    </div>\n    <div *ngIf=\"user\" class=\"buttonHandler container\">\n      <button class=\"editProfile\" (click)=\"gotoProfile()\">Go to profile</button>\n      <br>\n      <button class=\"logout\" (click)=\"logout()\">Logout</button>\n    </div>\n  </div>\n  <router-outlet></router-outlet>\n</div>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n"
 
 /***/ }),
 
@@ -582,7 +585,7 @@ var LoginformComponent = (function () {
     LoginformComponent.prototype.login = function () {
         var _this = this;
         this.auth.login(this.formInfo)
-            .subscribe(function (user) { return _this.successCb(user); }, function (err) { return _this.errorCb(err); });
+            .subscribe(function (user) { return _this.successCb(user); }, function (err) { return _this.errorCb(err); }, function () { return _this.router.navigate(['']); });
     };
     LoginformComponent.prototype.errorCb = function (err) {
         this.error = err;
@@ -591,7 +594,6 @@ var LoginformComponent = (function () {
     LoginformComponent.prototype.successCb = function (user) {
         this.user = user;
         this.error = null;
-        this.router.navigate(['']);
     };
     return LoginformComponent;
 }());
@@ -839,7 +841,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/seepost/seepost.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"post\" class=\"white col s8 container postPortrait\">\n  <div class=\"container\">\n    <div class=\"title\">\n      <h5>{{post.title}}</h5>\n    </div>\n    <div class=\"credit\">\n      <p>By <a routerLink=\"/user/{{post.creator._id}}\">{{post.creator.username}}</a></p>\n    </div>\n    <div class=\"textField\">\n      <li>{{post.content}}</li>\n    </div>\n    <div class=\"commentsNumber\">\n      <li>{{post.comments.length}} comment<span>s</span></li>\n    </div>\n    <div *ngIf=\"user\">\n      <button class=\"commentButton\" (click)=\"comment(post)\">Comment</button>\n      <button class=\"editButton\" (click)=\"gotoEdit(post)\">Edit</button>\n    </div>\n    <div class=\"commentBox hide container\">\n      <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n      <div class=\"newButtons container\">\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </div>\n  </div>\n</div>\n<div *ngFor=\"let comment of comments\" class=\"indivcomment grey\" (load)=\"alternateColor()\">\n  <div class=\"commentHolder container\">\n    <li>\n      <div class=\"indivCredit\">\n        <p>By <a href=\"/user/{{comment.creator._id}}\">{{comment.creator.username}}</a></p>\n      </div>\n    </li>\n    <button type=\"button\" name=\"button\" (click)=\"deleteComment(comment)\">Delete</button>\n    <li>\n      <div class=\"indivContent\">\n        {{comment.content}}\n      </div>\n    </li>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"post\" class=\"white col s8 container postPortrait\">\n  <div class=\"container\">\n    <div class=\"title\">\n      <h5>{{post.title}}</h5>\n    </div>\n    <div class=\"credit\">\n      <p>By <a routerLink=\"/user/{{post.creator._id}}\">{{post.creator.username}}</a></p>\n    </div>\n    <div *ngIf=\"post.creator._id===user._id\" class=\"editButton\">\n      <button (click)=\"gotoEdit()\">Edit post</button>\n    </div>\n    <div class=\"textField\">\n      <li>{{post.content}}</li>\n    </div>\n    <div class=\"commentsNumber\">\n      <li>{{post.comments.length}} comment<span>s</span></li>\n    </div>\n    <div *ngIf=\"user\">\n      <button class=\"commentButton\" (click)=\"comment(post)\">Comment</button>\n      <button class=\"editButton\" (click)=\"gotoEdit(post)\">Edit</button>\n    </div>\n    <div class=\"commentBox hide container\">\n      <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n      <div class=\"newButtons container\">\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </div>\n  </div>\n</div>\n<div *ngFor=\"let comment of comments\" class=\"indivcomment grey\" (load)=\"alternateColor()\">\n  <div class=\"commentHolder container\">\n    <li>\n      <div class=\"indivCredit\">\n        <p>By <a href=\"/user/{{comment.creator._id}}\">{{comment.creator.username}}</a></p>\n      </div>\n    </li>\n    <button type=\"button\" name=\"button\" (click)=\"deleteComment(comment)\">Delete</button>\n    <li>\n      <div class=\"indivContent\">\n        {{comment.content}}\n      </div>\n    </li>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1321,16 +1323,15 @@ var SignupformComponent = (function () {
     SignupformComponent.prototype.signup = function () {
         var _this = this;
         this.auth.signup(this.formInfo)
-            .subscribe(function (user) { return _this.successCb(user); }, function (err) { return _this.errorCb(err); });
-        this.router.navigate(['/user/signup']);
+            .subscribe(function (user) { return _this.successCb(user); }, function (err) { return _this.errorCb(err); }, function () { return _this.router.navigate(['/']); });
     };
     SignupformComponent.prototype.errorCb = function (err) {
         this.error = err;
         this.user = null;
     };
     SignupformComponent.prototype.successCb = function (user) {
-        this.user = user;
         this.error = null;
+        this.user = user;
     };
     return SignupformComponent;
 }());

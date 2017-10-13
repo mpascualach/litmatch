@@ -95,3 +95,9 @@ li {
 .commentText {
   height: 140px;
 }
+
+.reminderButton {
+  width: 200%;
+  position: relative;
+  right: 50px;
+}
