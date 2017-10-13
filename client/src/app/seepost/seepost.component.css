@@ -1,5 +1,3 @@
-
-
 .postPortrait {
   margin: 0 auto;
   margin-top: 95px;
@@ -48,7 +46,6 @@
 
 .indivcomment {
   border: 1px solid black;
-  height: 100px;
   width: 49.5%;
   margin: 0 auto;
   opacity: 0.8;
@@ -56,6 +53,26 @@
   position: relative;
   bottom: 2px;
   list-style: none;
+}
+
+.commentHolder {
+  margin-bottom: 35px;
+  margin-left: 60px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 10px;
+  width: 80%;
+  padding-bottom: 15px;
+  margin-top: 20px;
+}
+
+.commentHolder li {
+  margin-left: 20px;
+}
+
+.commentOnComment {
+  margin: 10px;
+  margin-left: 45%;
 }
 
 .indivContent {

@@ -8,10 +8,10 @@ const debug = require('debug')("angularauth:"+path.basename(__filename).split('.
 var messageRoutes = express.Router();
 
 messageRoutes.post('/send', (req, res, next) => {
-  let content = req.body.content;
 
-        var newMessage= new Message({
-            content
+        const newMessage= new Message({
+            recipient: req.user._id,
+            content: req.body.content
         });
 
         newMessage.save((err) => {
@@ -31,5 +31,14 @@ messageRoutes.post('/send', (req, res, next) => {
             }
         });
 });
+
+messageRoutes.get('/listbyId/:id', (req,res,next)=>{
+  Message.find({recipient: req.params.id})
+  .then(messages => {res.json(messages);
+  })
+  .reject(err => {
+    res.status(500).json(err)
+  });
+})
 
 module.exports = messageRoutes;

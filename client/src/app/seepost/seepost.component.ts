@@ -20,7 +20,7 @@ export class SeepostComponent implements OnInit {
     content: ""
   }
 
-  constructor(private Post: PostsService, public auth: AuthService,
+  constructor(public Post: PostsService, private auth: AuthService,
     private route: ActivatedRoute, private router: Router) {
     this.user = this.auth.getUser();
     this.auth.getLoginEventEmitter()

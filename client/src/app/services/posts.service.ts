@@ -32,6 +32,14 @@ export class PostsService {
       .catch(this.handleError)
   }
 
+  listPostsById(a){
+    console.log(a)
+    return this.http.get(`${BASEURL}/listbyId/${a}`, this.options)
+    .map(res => res.json())
+    .map(posts => { this.postsUpdate.emit(posts); return posts})
+    .catch(this.handleError);
+  }
+
   private emitPostsUpdate(user){
     this.user = user;
     this.postsUpdate.emit(user);
@@ -47,14 +55,6 @@ export class PostsService {
   makePost(post){
     return this.http.post(`${BASEURL}/makepost`, post, this.options)
     .map(res => res.json())
-    .catch(this.handleError);
-  }
-
-  listPostsById(a){
-    console.log(a)
-    return this.http.get(`${BASEURL}/listbyId/${a}`, this.options)
-    .map(res => res.json())
-    .map(posts => { this.postsUpdate.emit(posts); return posts})
     .catch(this.handleError);
   }
 

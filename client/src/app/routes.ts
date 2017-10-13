@@ -10,6 +10,7 @@ import  { SeeuserComponent } from './seeuser/seeuser.component';
 import  { LoginformComponent } from './loginform/loginform.component';
 import  { SignupformComponent } from './signupform/signupform.component';
 import { AllpostsComponent } from './allposts/allposts.component';
+import { MessageComponent } from './message/message.component';
 
 import  { IsLoggedInService } from './services/isLoggedIn.canactivate.service';
 
@@ -24,9 +25,10 @@ export const routes: Routes = [
   { path: 'makepost', component: MakepostComponent },
   { path: 'user/:id', component: SeeuserComponent,
     children: [
-      { path: ':id/edit', component: EditprofileComponent}
+      { path: 'edit', component: EditprofileComponent},
     ]
   },
+  { path: 'messages', component: MessageComponent},
   { path: 'login', component: LoginformComponent, },
   { path: 'signup', component: SignupformComponent, },
   { path: '**', redirectTo: '' }

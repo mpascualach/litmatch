@@ -5,6 +5,6 @@
   <li><b>Username: </b>{{subjectUser.username}}</li>
   <li>from {{subjectUser.location}} <span *ngIf="!subjectUser.favouriteGenre">...</span></li>
   <li><b>Preferred Genre: </b>{{subjectUser.favouriteGenre}} <span *ngIf="!subjectUser.favouriteGenre">None at the moment</span></li>
-  <li><b>Collection of books: </b>{{subjectUser.favouriteBooks}}<span *ngIf="!subjectUser.favouriteGenre">No collection registered</span></li>
-  <li *ngIf="subjectUser._id==user._id"><button click="gotoEdit()">Edit profile</button></li>
+  <li><b>Collection of books: </b>{{subjectUser.favouriteBooks}}<span *ngIf="!subjectUser.favouriteBooks">No collection registered</span></li>
+  <div *ngIf="user._id==subjectUser._id"><button click="gotoEdit()">Edit profile</button></div>
 </div>

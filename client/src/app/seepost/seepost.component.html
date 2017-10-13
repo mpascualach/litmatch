@@ -6,7 +6,7 @@
     <div class="credit">
       <p>By <a routerLink="/user/{{post.creator._id}}">{{post.creator.username}}</a></p>
     </div>
-    <div *ngIf="post.creator._id===user._id" class="editButton">
+    <div *ngIf="post.creator._id==user._id" class="editButton">
       <button (click)="gotoEdit()">Edit post</button>
     </div>
     <div class="textField">
@@ -28,16 +28,29 @@
   </div>
 </div>
 <div *ngFor="let comment of comments" class="indivcomment grey" (load)="alternateColor()">
-  <div class="commentHolder container">
+  <div class="commentHolder white container">
     <li>
       <div class="indivCredit">
         <p>By <a href="/user/{{comment.creator._id}}">{{comment.creator.username}}</a></p>
       </div>
     </li>
-    <button type="button" name="button" (click)="deleteComment(comment)">Delete</button>
+    <button type="button" *ngIf="comment.creator._id==user._id" name="button" (click)="deleteComment(comment)">Delete</button>
     <li>
       <div class="indivContent">
         {{comment.content}}
+      </div>
+    </li>
+    <li>
+      <div *ngIf="user" class="commentOnComment">
+        <button (click)="comment(post)">Comment</button>
+      </div>
+    </li>
+    <li>
+      <div class="commentBox hide container">
+        <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
+        <div class="newButtons container">
+          <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
+        </div>
       </div>
     </li>
   </div>

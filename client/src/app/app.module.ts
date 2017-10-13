@@ -20,6 +20,7 @@ import { MakepostComponent } from './makepost/makepost.component';
 import { SeepostComponent } from './seepost/seepost.component';
 import { EditpostComponent } from './editpost/editpost.component';
 import  { SeeuserComponent } from './seeuser/seeuser.component';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import  { SeeuserComponent } from './seeuser/seeuser.component';
     SeepostComponent,
     SeeuserComponent,
     EditpostComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@
       </span><span *ngIf="!user">Anonymous</span></li>
     </div>
     <div class="container orange userHandler">
-      <li><b>Messages: </b><a *ngIf="user">{{user.messages.length}}</a>
+      <li><b>Messages: </b><a *ngIf="user" href="/messages">{{user.messages.length}}</a>
         <span *ngIf="!user">None</span></li>
     </div>
     <div class="container orange userHandler">

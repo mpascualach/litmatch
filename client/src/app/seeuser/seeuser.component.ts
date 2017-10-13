@@ -17,6 +17,10 @@ export class SeeuserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.auth.isLoggedIn();
+    this.auth.getLoginEventEmitter()
+      .subscribe(user => {
+        this.user = user
+      })
 
     this.route.params
       .subscribe((params) => {

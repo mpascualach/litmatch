@@ -1,0 +1,19 @@
+.messagePortal {
+  width: 45%;
+  text-align: center;
+  height: 240px;
+  margin-top: 100px;
+  opacity: 0.9;
+  border-radius: 5px;
+}
+
+.messageHolder1 {
+  margin-top: 50px;
+  position: relative;
+  top: 20px;
+}
+
+.noMessages {
+  border: 1px solid black;
+  height: 140px;
+}

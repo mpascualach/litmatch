@@ -1,0 +1,9 @@
+<div class="container white messagePortal">
+  <div class="container messageHolder1">
+    <h5>Messages:</h5>
+    <div class="noMessages" *ngIf="messages.length == 0">No messages at the moment</div>
+  </div>
+  <div class="messageHolder2 container" *ngFor="let message of messages">
+    <a href="#">{{message.sender}}</a> <p>{{message.content}}</p>
+  </div>
+</div>
