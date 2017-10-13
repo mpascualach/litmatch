@@ -4,7 +4,7 @@
       <h5>{{post.title}}</h5>
     </div>
     <div class="credit">
-      <p>By <a routerLink="/user/{{post.creator._id}}">{{post.title}}</p>
+      <p>By <a routerLink="/user/{{post.creator._id}}">{{post.title}}</a></p>
     </div>
     <div class="textField">
       <li>{{post.content}}</li>
@@ -13,7 +13,7 @@
       <li>{{post.comments.length}} comment<span>s</span></li>
     </div>
     <div *ngIf="user">
-      <button class="commentButton"(click)="comment(post)">Comment</button>
+      <button class="commentButton" (click)="comment(post)">Comment</button>
       <button class="editButton" (click)="gotoEdit(post)">Edit</button>
     </div>
     <div class="commentBox hide container">
@@ -26,12 +26,16 @@
 </div>
 <div *ngFor="let comment of comments" class="indivcomment grey" (load)="alternateColor()">
   <div class="commentHolder container">
-    <li><div class="indivCredit">
-      By <a href="#">{{comment.creator.username}}</a>
-    </div></li>
+    <li>
+      <div class="indivCredit">
+        <p>By <a href="/user/{{comment.creator._id}}">{{comment.creator.username}}</a></p>
+      </div>
+    </li>
     <button type="button" name="button" (click)="deleteComment(comment)">Delete</button>
-    <li><div class="indivContent">
-      {{comment.content}}
-    </div></li>
+    <li>
+      <div class="indivContent">
+        {{comment.content}}
+      </div>
+    </li>
   </div>
 </div>
