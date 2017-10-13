@@ -84,6 +84,7 @@ authRoutes.get("/:id", (req,res,next)=>{
 })
 
 authRoutes.put("/:id/edit", (req, res ,next) => {
+  console.log(req.user , req.params)
   const updates = {
     username: req.body.username,
     email: req.body.email,

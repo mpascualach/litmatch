@@ -70,7 +70,8 @@ export class AuthService {
     }
 
     editUser(id, user){
-      return this.http.put(`${BASEURL}/user/${id}/edit`, user, this.options)
+      console.log(id,user)
+      return this.http.put(`${BASEURL}/${id}/edit`, user, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);

@@ -914,7 +914,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".postPortrait {\n  margin: 0 auto;\n  margin-top: 95px;\n  text-align: center;\n  width: 50%;\n  border: 2px solid black;\n  list-style: none;\n  opacity: 0.9;\n  padding: 10px;\n  border-radius: 5px;\n}\n\n.title {\n  margin-bottom: 25px;\n}\n\n.textField {\n  border: 1.5px solid black;\n  text-align: start;\n  padding-bottom: 70px;\n  margin-bottom: 10px;\n}\n\n.postPortrait .commentButton {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  margin-right: 30px;\n}\n\n.postPortrait .editButton {\n  float: right;\n  margin-top: 10px;\n}\n\n.commentsNumber {\n  float: left;\n}\n\n.commentText {\n  height: 140px;\n}\n\n.comment {\n  width: 100%;\n}\n\n.indivcomment {\n  border: 1px solid black;\n  width: 49.5%;\n  margin: 0 auto;\n  opacity: 0.8;\n  border-radius: 2px;\n  position: relative;\n  bottom: 2px;\n  list-style: none;\n}\n\n.commentHolder {\n  margin-bottom: 35px;\n  margin-left: 60px;\n  border-radius: 5px;\n  border: 1px solid black;\n  margin-top: 10px;\n  width: 80%;\n  padding-bottom: 15px;\n  margin-top: 20px;\n}\n\n.commentHolder li {\n  margin-left: 20px;\n}\n\n.commentOnComment {\n  margin: 10px;\n  margin-left: 45%;\n}\n\n.indivContent {\n  margin-top: 5px;\n  margin-left: 5px;\n}\n", ""]);
+exports.push([module.i, ".postPortrait {\n  margin: 0 auto;\n  margin-top: 95px;\n  text-align: center;\n  width: 50%;\n  border: 2px solid black;\n  list-style: none;\n  opacity: 0.9;\n  padding: 10px;\n  border-radius: 5px;\n}\n\n.title {\n  margin-bottom: 25px;\n}\n\n.textField {\n  border: 1.5px solid black;\n  text-align: start;\n  padding-bottom: 70px;\n  margin-bottom: 10px;\n  margin-left: 10px;\n}\n\n.postPortrait .commentButton {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  margin-right: 30px;\n}\n\n.postPortrait .editButton {\n  float: right;\n  margin-top: 10px;\n}\n\n.commentsNumber {\n  float: left;\n}\n\n.commentText {\n  height: 140px;\n}\n\n.comment {\n  width: 100%;\n}\n\n.indivcomment {\n  border: 1px solid black;\n  width: 49.5%;\n  margin: 0 auto;\n  opacity: 0.8;\n  border-radius: 2px;\n  position: relative;\n  bottom: 2px;\n  list-style: none;\n}\n\n.commentHolder {\n  margin-bottom: 35px;\n  margin-left: 60px;\n  border-radius: 5px;\n  border: 1px solid black;\n  margin-top: 10px;\n  width: 80%;\n  padding-bottom: 15px;\n  margin-top: 20px;\n}\n\n.commentHolder li {\n  margin-left: 20px;\n}\n\n.commentOnComment {\n  margin: 10px;\n  margin-left: 45%;\n}\n\n.indivContent {\n  margin-top: 5px;\n  margin-left: 5px;\n}\n", ""]);
 
 // exports
 
@@ -1063,7 +1063,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/seeuser/seeuser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet>\n<div class=\"userProfile container white\">\n  <li><img class=\"image\" [src]=\"\" alt=\"(profile pic goes here)\"></li>\n  <li><b>Username: </b>{{subjectUser.username}}</li>\n  <li>from {{subjectUser.location}} <span *ngIf=\"!subjectUser.favouriteGenre\">...</span></li>\n  <li><b>Preferred Genre: </b>{{subjectUser.favouriteGenre}} <span *ngIf=\"!subjectUser.favouriteGenre\">None at the moment</span></li>\n  <li><b>Collection of books: </b>{{subjectUser.favouriteBooks}}<span *ngIf=\"!subjectUser.favouriteBooks\">No collection registered</span></li>\n  <div *ngIf=\"user._id==subjectUser._id\"><button (click)=\"gotoEdit()\">Edit profile</button></div>\n</div>\n"
+module.exports = "\n<router-outlet>\n<div class=\"userProfile container white\">\n  <li><img class=\"image\" [src]=\"\" alt=\"(profile pic goes here)\"></li>\n  <li><b>Username: </b>{{subjectUser.username}}</li>\n  <li>from {{subjectUser.location}} <span *ngIf=\"!subjectUser.favouriteGenre\">...</span></li>\n  <li><b>Preferred Genre: </b>{{subjectUser.favouriteGenre}} <span *ngIf=\"!subjectUser.favouriteGenre\">None at the moment</span></li>\n  <li><b>Collection of books: </b>{{subjectUser.favouriteBook}}<span *ngIf=\"!subjectUser.favouriteBook\">No favourite book at the moment</span></li>\n  <div *ngIf=\"user._id==subjectUser._id\"><button (click)=\"gotoEdit()\">Edit profile</button></div>\n</div>\n"
 
 /***/ }),
 
@@ -1215,7 +1215,8 @@ var AuthService = (function () {
     };
     AuthService.prototype.editUser = function (id, user) {
         var _this = this;
-        return this.http.put(BASEURL + "/user/" + id + "/edit", user, this.options)
+        console.log(id, user);
+        return this.http.put(BASEURL + "/" + id + "/edit", user, this.options)
             .map(function (res) { return res.json(); })
             .map(function (user) { return _this.emitUserLoginEvent(user); })
             .catch(this.handleError);
