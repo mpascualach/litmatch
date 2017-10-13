@@ -90,6 +90,7 @@ authRoutes.put("/:id/edit", (req, res ,next) => {
     password: req.body.password,
     location: req.body.location,
     favouriteGenre: req.body.favouriteGenre,
+    favouriteBook: req.body.favouriteBook
   };
   console.log(updates)
   User.findByIdAndUpdate(req.params.id, updates, (err) => {

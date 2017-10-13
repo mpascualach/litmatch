@@ -27,7 +27,7 @@
     </div>
   </div>
 </div>
-<div *ngFor="let comment of comments" class="indivcomment grey" (load)="alternateColor()">
+<div *ngFor="let comment of comments" class="indivcomment grey indivcomment" (load)="alternateColor()">
   <div class="commentHolder white container">
     <li>
       <div class="indivCredit">
@@ -42,14 +42,12 @@
     </li>
     <li>
       <div *ngIf="user" class="commentOnComment">
-        <button (click)="comment(post)">Comment</button>
+        <button (click)="comment2(comment)">Comment</button>
       </div>
-    </li>
-    <li>
-      <div class="commentBox hide container">
+      <div class="commentBox{{comment._id}} hide container">
         <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
         <div class="newButtons container">
-          <button (click)="goBack(post)">Go Back</button><button (click)="sendComment(post)">Send</button>
+          <button (click)="goBack2(comment)">Go Back</button><button (click)="sendComment(comment)">Send</button>
         </div>
       </div>
     </li>

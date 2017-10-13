@@ -62,9 +62,21 @@ export class SeepostComponent implements OnInit {
   }
 
   goBack(post) {
-    $(".fortextarea").show()
-    $(`.comment`).toggleClass("hide");
+    $(`.commentBox`).toggleClass("hide");
+    $(".fortextarea").hide();
   }
+
+  comment2(comment){
+    $(`.commentBox${comment._id}`).toggleClass("hide");
+    $(".commentOnComment").hide();
+  }
+
+  goBack2(comment) {
+    $(".commentOnComment").show();
+    $(`.commentBox${comment._id}`).toggleClass("hide");
+  }
+
+
 
   sendComment(post) {
     this.Post.makeComment(post._id, this.formInfo.content, this.user._id)

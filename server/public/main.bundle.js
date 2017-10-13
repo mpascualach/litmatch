@@ -151,7 +151,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"background teal lighten-1\">\n  <div style=\"text-align:center\" class=\"col s10 links white container\">\n    <div class=\"container linksHandler\">\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/']\">Home</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/login']\">Login</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/signup']\">Signup</a></div>\n    </div>\n  </div>\n  <div class=\"col s4 sidebar red\">\n    <div class=\"container orange userHandler\">\n      <li><b> Username: </b><span *ngIf=\"user\">{{user.username}}\n      </span><span *ngIf=\"!user\">Anonymous</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Messages: </b><a *ngIf=\"user\" href=\"/messages\">{{user.messages.length}}</a>\n        <span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Posts: </b><span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler userPostHandle\">\n      <ul *ngFor=\"let post of postlist\" >\n        <div class=\"indivUserPost truncate\">\n          <a href=\"#\">{{post.title}}</a>\n        </div>\n      </ul>\n    </div>\n    <div *ngIf=\"user\" class=\"buttonHandler container\">\n      <button class=\"editProfile\" (click)=\"gotoProfile()\">Go to profile</button>\n      <br>\n      <button class=\"logout\" (click)=\"logout()\">Logout</button>\n    </div>\n  </div>\n  <router-outlet></router-outlet>\n</div>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n"
+module.exports = "<div class=\"background teal lighten-1\">\n  <div style=\"text-align:center\" class=\"col s10 links white container\">\n    <div class=\"container linksHandler\">\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/']\">Home</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/login']\">Login</a></div>\n      <div class=\"col s1 link hoverable\"><a [routerLink]=\"['/signup']\">Signup</a></div>\n    </div>\n  </div>\n  <div class=\"col s4 sidebar red\">\n    <div class=\"container orange userHandler\">\n      <li><b> Username: </b><span *ngIf=\"user\">{{user.username}}\n      </span><span *ngIf=\"!user\">Anonymous</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Messages: </b><a *ngIf=\"user\" href=\"/messages\">{{user.messages.length}}</a>\n        <span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler\">\n      <li><b>Posts: </b><span *ngIf=\"!user\">None</span></li>\n    </div>\n    <div class=\"container orange userHandler userPostHandle\">\n      <ul *ngFor=\"let post of postlist\" >\n        <div class=\"indivUserPost truncate\">\n          <a routerLink=\"/post/{{post._id}}\">{{post.title}}</a>\n        </div>\n      </ul>\n    </div>\n    <div *ngIf=\"user\" class=\"buttonHandler container\">\n      <button class=\"editProfile\" (click)=\"gotoProfile()\">Go to profile</button>\n      <br>\n      <button class=\"logout\" (click)=\"logout()\">Logout</button>\n    </div>\n  </div>\n  <router-outlet></router-outlet>\n</div>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n"
 
 /***/ }),
 
@@ -439,7 +439,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/editprofile/editprofile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"formInfo\">\n\n  <form class=\"white editForm container\">\n    <h5>Editing {{user.username}}'s profile</h5>\n    <div class=\"formHandler container\">\n      <div class=\"component container\">\n        <label>Username</label> <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\">\n      </div>\n      <div class=\"component container\">\n        <label>Password</label> <input type=\"text\" [(ngModel)]=\"formInfo.password\" name=\"password\">\n      </div>\n      <div class=\"component container\">\n        <label>Email</label> <input type=\"text\" [(ngModel)]=\"formInfo.email\" name=\"email\">\n      </div>\n      <div class=\"component container\">\n        <label>Location</label> <input type=\"text\" [(ngModel)]=\"formInfo.location\" name=\"location\">\n      </div>\n      <div class=\"component container\">\n        <label>FavouriteGenre</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteGenre\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <button (click)=\"editUser()\">Edit user</button>\n      </div>\n    </div>\n  </form>\n\n</div>\n"
+module.exports = "<div *ngIf=\"formInfo\">\n\n  <form class=\"white editForm container\">\n    <h5>Editing {{user.username}}'s profile</h5>\n    <div class=\"formHandler container\">\n      <div class=\"component container\">\n        <label>Username</label> <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\">\n      </div>\n      <div class=\"component container\">\n        <label>Password</label> <input type=\"text\" [(ngModel)]=\"formInfo.password\" name=\"password\">\n      </div>\n      <div class=\"component container\">\n        <label>Email</label> <input type=\"text\" [(ngModel)]=\"formInfo.email\" name=\"email\">\n      </div>\n      <div class=\"component container\">\n        <label>Location</label> <input type=\"text\" [(ngModel)]=\"formInfo.location\" name=\"location\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Genre</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteGenre\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <label>Favourite Book</label> <input type=\"text\" [(ngModel)]=\"formInfo.favouriteBook\" name=\"favouriteGenre\">\n      </div>\n      <div class=\"component container\">\n        <button (click)=\"editUser()\">Edit user</button>\n      </div>\n    </div>\n  </form>\n\n</div>\n"
 
 /***/ }),
 
@@ -475,7 +475,8 @@ var EditprofileComponent = (function () {
             password: "",
             email: "",
             location: "",
-            favouriteGenre: ""
+            favouriteGenre: "",
+            favouriteBook: " "
         };
     }
     EditprofileComponent.prototype.ngOnInit = function () {
@@ -493,7 +494,8 @@ var EditprofileComponent = (function () {
                 password: user.password,
                 email: user.email,
                 location: user.location,
-                favouriteGenre: user.favouriteGenre
+                favouriteGenre: user.favouriteGenre,
+                favouriteBook: user.favouriteBook,
             };
         });
         console.log(this.user);
@@ -927,7 +929,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/seepost/seepost.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"post\" class=\"white col s8 container postPortrait\">\n  <div class=\"container\">\n    <div class=\"title\">\n      <h5>{{post.title}}</h5>\n    </div>\n    <div class=\"credit\">\n      <p>By <a routerLink=\"/user/{{post.creator._id}}\">{{post.creator.username}}</a></p>\n    </div>\n    <div *ngIf=\"post.creator._id==user._id\" class=\"editButton\">\n      <button (click)=\"gotoEdit()\">Edit post</button>\n    </div>\n    <div class=\"textField\">\n      <li>{{post.content}}</li>\n    </div>\n    <div class=\"commentsNumber\">\n      <li>{{post.comments.length}} comment<span>s</span></li>\n    </div>\n    <div *ngIf=\"user\">\n      <button class=\"commentButton\" (click)=\"comment(post)\">Comment</button>\n      <button class=\"editButton\" (click)=\"gotoEdit(post)\">Edit</button>\n    </div>\n    <div class=\"commentBox hide container\">\n      <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n      <div class=\"newButtons container\">\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </div>\n  </div>\n</div>\n<div *ngFor=\"let comment of comments\" class=\"indivcomment grey\" (load)=\"alternateColor()\">\n  <div class=\"commentHolder white container\">\n    <li>\n      <div class=\"indivCredit\">\n        <p>By <a href=\"/user/{{comment.creator._id}}\">{{comment.creator.username}}</a></p>\n      </div>\n    </li>\n    <button type=\"button\" *ngIf=\"comment.creator._id==user._id\" name=\"button\" (click)=\"deleteComment(comment)\">Delete</button>\n    <li>\n      <div class=\"indivContent\">\n        {{comment.content}}\n      </div>\n    </li>\n    <li>\n      <div *ngIf=\"user\" class=\"commentOnComment\">\n        <button (click)=\"comment(post)\">Comment</button>\n      </div>\n    </li>\n    <li>\n      <div class=\"commentBox hide container\">\n        <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n        <div class=\"newButtons container\">\n          <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n        </div>\n      </div>\n    </li>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"post\" class=\"white col s8 container postPortrait\">\n  <div class=\"container\">\n    <div class=\"title\">\n      <h5>{{post.title}}</h5>\n    </div>\n    <div class=\"credit\">\n      <p>By <a routerLink=\"/user/{{post.creator._id}}\">{{post.creator.username}}</a></p>\n    </div>\n    <div *ngIf=\"post.creator._id==user._id\" class=\"editButton\">\n      <button (click)=\"gotoEdit()\">Edit post</button>\n    </div>\n    <div class=\"textField\">\n      <li>{{post.content}}</li>\n    </div>\n    <div class=\"commentsNumber\">\n      <li>{{post.comments.length}} comment<span>s</span></li>\n    </div>\n    <div *ngIf=\"user\">\n      <button class=\"commentButton\" (click)=\"comment(post)\">Comment</button>\n      <button class=\"editButton\" (click)=\"gotoEdit(post)\">Edit</button>\n    </div>\n    <div class=\"commentBox hide container\">\n      <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n      <div class=\"newButtons container\">\n        <button (click)=\"goBack(post)\">Go Back</button><button (click)=\"sendComment(post)\">Send</button>\n      </div>\n    </div>\n  </div>\n</div>\n<div *ngFor=\"let comment of comments\" class=\"indivcomment grey indivcomment\" (load)=\"alternateColor()\">\n  <div class=\"commentHolder white container\">\n    <li>\n      <div class=\"indivCredit\">\n        <p>By <a href=\"/user/{{comment.creator._id}}\">{{comment.creator.username}}</a></p>\n      </div>\n    </li>\n    <button type=\"button\" *ngIf=\"comment.creator._id==user._id\" name=\"button\" (click)=\"deleteComment(comment)\">Delete</button>\n    <li>\n      <div class=\"indivContent\">\n        {{comment.content}}\n      </div>\n    </li>\n    <li>\n      <div *ngIf=\"user\" class=\"commentOnComment\">\n        <button (click)=\"comment2(comment)\">Comment</button>\n      </div>\n      <div class=\"commentBox{{comment._id}} hide container\">\n        <textarea name=\"comment\" class=\"commentText\" [(ngModel)]=\"formInfo.content\" rows=\"25\" cols=\"80\"></textarea>\n        <div class=\"newButtons container\">\n          <button (click)=\"goBack2(comment)\">Go Back</button><button (click)=\"sendComment(comment)\">Send</button>\n        </div>\n      </div>\n    </li>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1003,8 +1005,16 @@ var SeepostComponent = (function () {
         __WEBPACK_IMPORTED_MODULE_4_jquery__(".fortextarea").hide();
     };
     SeepostComponent.prototype.goBack = function (post) {
-        __WEBPACK_IMPORTED_MODULE_4_jquery__(".fortextarea").show();
-        __WEBPACK_IMPORTED_MODULE_4_jquery__(".comment").toggleClass("hide");
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".commentBox").toggleClass("hide");
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".fortextarea").hide();
+    };
+    SeepostComponent.prototype.comment2 = function (comment) {
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".commentBox" + comment._id).toggleClass("hide");
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".commentOnComment").hide();
+    };
+    SeepostComponent.prototype.goBack2 = function (comment) {
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".commentOnComment").show();
+        __WEBPACK_IMPORTED_MODULE_4_jquery__(".commentBox" + comment._id).toggleClass("hide");
     };
     SeepostComponent.prototype.sendComment = function (post) {
         this.Post.makeComment(post._id, this.formInfo.content, this.user._id)

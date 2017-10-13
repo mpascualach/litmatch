@@ -29,7 +29,8 @@ export class EditprofileComponent implements OnInit {
     password: "",
     email: "",
     location: "",
-    favouriteGenre: ""
+    favouriteGenre: "",
+    favouriteBook:" "
   };
   error: String;
   constructor(public auth: AuthService, public Post: PostsService, public router: Router) {
@@ -50,7 +51,8 @@ export class EditprofileComponent implements OnInit {
           password: user.password,
           email: user.email,
           location: user.location,
-          favouriteGenre: user.favouriteGenre
+          favouriteGenre: user.favouriteGenre,
+          favouriteBook: user.favouriteBook,
         }
       });
       console.log(this.user)

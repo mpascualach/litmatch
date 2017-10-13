@@ -21,7 +21,7 @@
     <div class="container orange userHandler userPostHandle">
       <ul *ngFor="let post of postlist" >
         <div class="indivUserPost truncate">
-          <a href="#">{{post.title}}</a>
+          <a routerLink="/post/{{post._id}}">{{post.title}}</a>
         </div>
       </ul>
     </div>

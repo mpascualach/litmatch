@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   location: String,
   favouriteGenre: String,
-  books: [],
+  favouriteBook: String,
   messages: [],
 }, {
   timestamps: {
