@@ -1,0 +1,25 @@
+<div class="col s4 webTitle white">
+  <h2>{{title}}</h2>
+</div>
+
+<div class="searchContainer container">
+  <div class="searchPortal col s8 container white">
+    <div class="portalTitle">
+      <h4>Search entries for "{{search}}"</h4>
+    </div>
+    <div class="none" *ngIf="posts.length === 0">
+      <p>No searches found for "{{search}}"</p>
+    </div>
+    <ul class="searchList hoverable indivpost indivpost{{post._id}} col s4" *ngFor="let post of posts">
+      <li class="title"><b>{{post.title}}</b></li>
+      <li class="credit"> Posted by: <a routerLink='/user/{{post.creator}}'>{{post.creator}}</a> on {{post.created_at1}} at {{post.created_at2}}</li>
+      <li class="content truncate">{{post.content}}</li>
+      <div class="postLinks">
+        <li><a routerLink="/post/{{post._id}}">See post - {{post.comments.length}} comments</a></li>
+      </div>
+      <div class="seemore" *ngIf="posts.length > 5">
+        <a href="#">See more</a>
+      </div>
+    </ul>
+  </div>
+</div>

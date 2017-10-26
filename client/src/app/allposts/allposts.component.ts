@@ -20,9 +20,9 @@ export class AllpostsComponent implements OnInit {
   }
   constructor(private Post: PostsService, public auth: AuthService,
     public router: Router) {
-    this.user = this.auth.getUser();
+    this.auth.isLoggedIn();
     this.auth.getLoginEventEmitter()
-      .subscribe(user => this.user = user);
+      .subscribe(user => {this.user = user;});
   }
 
   ngOnInit() {
@@ -30,9 +30,8 @@ export class AllpostsComponent implements OnInit {
       .subscribe((posts) => {
         this.posts = posts;
         posts.forEach(post => {
-          if (post.creator._id === this.user._id){
-            $(".editing").toggleClass("hide");
-          }
+          post.created_at1 = post.created_at.slice(0,10);
+          post.created_at2 = post.created_at.slice(11,19);
         })
       });
   }

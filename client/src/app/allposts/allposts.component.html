@@ -5,7 +5,7 @@
   <div class="postPortal container white col s8">
     <h4 class="title col s6">Most recent posts</h4>
     <ul *ngFor="let post of posts" class="indivpost indivpost{{post._id}} col s4 hoverable">
-       <li class="credit"> Posted by: <a routerLink='/user/{{post.creator._id}}'>{{post.creator.username}}</a> at {{post.creator.created_at}}</li>
+      <li class="credit"> Posted by: <a routerLink='/user/{{post.creator._id}}'>{{post.creator.username}}</a> on {{post.created_at1}} at {{post.created_at2}}</li>
       <b>{{post.title}}</b>
       <li class="content truncate" (click)="show()">{{post.content}}</li>
       <div class="postLinks">
@@ -22,8 +22,10 @@
   </div>
   <div class="container col s8 bottomBar grey">
     <div class="container button-handler hoverable">
-      <div class="makePost"><button *ngIf="user" (click)="makePost()">Make post</button>
-        <button class="reminderButton" (click)="gotoSignUp()"*ngIf="!user">Sign in to make posts :)</button></div>
+      <div class="makePost">
+        <button *ngIf="user" (click)="makePost()">Make post</button>
+        <button class="reminderButton" (click)="gotoSignUp()" *ngIf="!user">Sign in to make posts :)</button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+.shelfHolder {
+  width: 50%;
+  border: 2px solid black;
+  opacity: 0.9;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.shelfHolder input {
+  width: 90%;
+  margin: 25px;
+  border: 1px solid black;
+}
+
+.shelfHolder .searchEntries {
+  height: 500px;
+  border: 1px solid black;
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}

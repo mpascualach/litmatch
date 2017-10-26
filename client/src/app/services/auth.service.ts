@@ -17,6 +17,13 @@ export class AuthService {
     this.isLoggedIn().subscribe();
   }
 
+  isLoggedIn() {
+    return this.http.get(`${BASEURL}/loggedin`, this.options)
+      .map(res => res.json())
+      .map(user => this.emitUserLoginEvent(user))
+      .catch(this.handleError);
+  }
+
     public getLoginEventEmitter():EventEmitter<any>{
       return this.userLoginEvent;
     }
@@ -51,7 +58,7 @@ export class AuthService {
     login(user) {
       return this.http.post(`${BASEURL}/login`, user, this.options)
         .map(res => res.json())
-        .map(user => this.emitUserLoginEvent(user))
+        .map(user => {this.emitUserLoginEvent(user);})
         .catch(this.handleError);
     }
 
@@ -59,13 +66,6 @@ export class AuthService {
       return this.http.get(`${BASEURL}/logout`, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(null))
-        .catch(this.handleError);
-    }
-
-    isLoggedIn() {
-      return this.http.get(`${BASEURL}/loggedin`, this.options)
-        .map(res => res.json())
-        .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);
     }
 

@@ -1,23 +1,32 @@
+<div class="col s4 webTitle white">
+  <h2>{{title}}</h2>
+</div>
+
 <div *ngIf="post" class="white col s8 container postPortrait">
   <div class="container">
     <div class="title">
       <h5>{{post.title}}</h5>
+      <div *ngIf="post.creator._id==user._id" class="deleteButton">
+        <button (click)="delete(post)">Delete</button>
+      </div>
+    </div>
+    <div class="date">
+      <p>Made on {{post.created_at1}} at {{post.created_at2}}</p>
     </div>
     <div class="credit">
       <p>By <a routerLink="/user/{{post.creator._id}}">{{post.creator.username}}</a></p>
     </div>
-    <div *ngIf="post.creator._id==user._id" class="editButton">
-      <button (click)="gotoEdit()">Edit post</button>
-    </div>
     <div class="textField">
-      <li>{{post.content}}</li>
+      <li><p>{{post.content}}</p></li>
     </div>
     <div class="commentsNumber">
-      <li>{{post.comments.length}} comment<span>s</span></li>
+      <li>{{post.comments.length}} comment<span *ngIf="post.comments.length > 1 || post.comments.length === 0">s</span></li>
     </div>
-    <div *ngIf="user">
-      <button class="commentButton" (click)="comment(post)">Comment</button>
-      <button class="editButton" (click)="gotoEdit(post)">Edit</button>
+    <div class="buttonHandler">
+      <button class="commentButton" *ngIf="user!=Observable" (click)="comment(post)">Comment</button>
+      <div *ngIf="post.creator._id==user._id" class="editButton">
+        <button (click)="gotoEdit(post)">Edit</button>
+      </div>
     </div>
     <div class="commentBox hide container">
       <textarea name="comment" class="commentText" [(ngModel)]="formInfo.content" rows="25" cols="80"></textarea>
@@ -33,8 +42,8 @@
       <div class="indivCredit">
         <p>By <a href="/user/{{comment.creator._id}}">{{comment.creator.username}}</a></p>
       </div>
+      <button class="deleteComment" *ngIf="comment.creator._id==user._id" name="button" (click)="deleteComment(comment)">Delete</button>
     </li>
-    <button type="button" *ngIf="comment.creator._id==user._id" name="button" (click)="deleteComment(comment)">Delete</button>
     <li>
       <div class="indivContent">
         {{comment.content}}

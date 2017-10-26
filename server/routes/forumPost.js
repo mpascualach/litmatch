@@ -4,35 +4,15 @@ const path = require('path');
 const Post = require('../models/Post');
 const bcrypt = require('bcrypt');
 const debug = require('debug')("angularauth:" + path.basename(__filename).split('.')[0]);
-const User = require ('../models/User')
+const User = require('../models/User')
 const Comment = require('../models/Comment')
 var postRoutes = express.Router();
 
 postRoutes.get('/list', (req, res, next) => {
   Post.find().sort('-created_at')
-  .populate("creator")
+    .populate("creator")
     .then(list => {
       res.json(list);
-    })
-    .reject(err => {
-      res.status(500).json(err)
-    });
-})
-
-postRoutes.get('/listbyId/:id', (req,res)=>{
-  Post.find({creator: req.params.id}).sort('-created_at')
-  .then(posts => {console.log(req.user); res.json(posts);
-  })
-  .reject(err => {
-    res.status(500).json(err)
-  });
-})
-
-
-postRoutes.get('/:id', (req, res, next) => {
-  Post.findById(req.params.id).populate({ path: "comments", populate: {path: "creator"}})
-    .then(singlePost => {
-      res.json(singlePost);
     })
     .reject(err => {
       res.status(500).json(err)
@@ -46,12 +26,62 @@ postRoutes.post('/makepost', (req, res, next) => {
     content: req.body.content,
   });
   newPost.save()
-  .then(result =>
+    .then(result =>
 
-     res.status(200).json(result))
-  .catch(err => console.log(err))
+      res.status(200).json(result))
+    .catch(err => console.log(err))
 
 });
+
+postRoutes.get('/deleteall', (req, res, next) => {
+  Post.remove().then(message => {
+      return res.status(200).json(message);
+    })
+    .catch(err => res.status(500).json(err));
+})
+
+postRoutes.get('/listbyId/:id', (req, res) => {
+  Post.find({
+      creator: req.params.id
+    }).sort('-created_at')
+    .then(posts => {
+      console.log(req.user);
+      res.json(posts);
+    })
+    .reject(err => {
+      res.status(500).json(err)
+    });
+})
+
+
+postRoutes.get('/:id', (req, res, next) => {
+  Post.findById(req.params.id).populate({
+      path: "comments",
+      populate: {
+        path: "creator"
+      }
+    }).populate('creator')
+    .then(singlePost => {
+      res.json(singlePost);
+    })
+    .reject(err => {
+      res.status(500).json(err)
+    });
+})
+
+postRoutes.get('/search/:id', (req, res, next) => {
+  Post.search(req.params.id, (error,entries) => {
+    if (error) {
+      return res.status(400).json({
+        message: "Your search failed",
+        err
+      });
+    }
+    else {
+      res.json(entries);
+    }
+  })
+})
 
 postRoutes.put("/edit/:id", (req, res, next) => {
   const updates = {

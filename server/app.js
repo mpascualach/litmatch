@@ -13,7 +13,9 @@ const postRoutes = require('./routes/forumPost')
 const commentRoutes = require('./routes/commentRoutes')
 const messageRoutes = require("./routes/messageRoutes")
 const mongoose = require('mongoose');
+const searchable = require('mongoose-searchable')
 const cors = require('cors');
+const goodreads = require('goodreads');
 require('dotenv').load();
 
 const app = express();

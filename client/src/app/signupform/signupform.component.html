@@ -1,21 +1,31 @@
-<form class="signupForm white">
-  <h2> Signup </h2>
-  <div class="textField">
-    <label> Username </label>
-    <br>
-    <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+<div class="col s4 webTitle white">
+  <h2>{{title}}</h2>
+</div>
+<div class="signupForm white container">
+  <div class="formHandler container">
+    <div class="error" *ngIf="error">
+      <p>{{ error }}</p>
+    </div>
+    <div class="title">
+      <h3> Signup </h3>
+    </div>
+    <div class="textField container">
+      <label> Username </label>
+      <br>
+      <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+    </div>
+    <div class="textField container">
+      <label> Email </label>
+      <br>
+      <input type="email" [(ngModel)]="formInfo.email" name="email"/>
+    </div>
+    <div class="textField container">
+      <label> Password </label>
+      <br>
+      <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+    </div>
+    <div class="textField">
+        <button (click)="signup()"> signup </button>
+    </div>
   </div>
-  <div class="textField">
-    <label> Password </label>
-    <br>
-    <input type="password" [(ngModel)]="formInfo.password" name="password"/>
-  </div>
-  <div class="textField">
-    <label> Email </label>
-    <br>
-    <input type="email" [(ngModel)]="formInfo.email" name="email"/>
-  </div>
-  <div class="textField">
-      <button (click)="signup()"> signup </button>
-  </div>
-</form>
+</div>

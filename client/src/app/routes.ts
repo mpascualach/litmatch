@@ -11,11 +11,14 @@ import  { LoginformComponent } from './loginform/loginform.component';
 import  { SignupformComponent } from './signupform/signupform.component';
 import { AllpostsComponent } from './allposts/allposts.component';
 import { MessageComponent } from './message/message.component';
+import { ShelfComponent } from './shelf/shelf.component';
+import { SearchesComponent } from './searches/searches.component';
 
 import  { IsLoggedInService } from './services/isLoggedIn.canactivate.service';
 
 export const routes: Routes = [
   { path: '', component: AllpostsComponent },
+  { path: 'search/:id', component: SearchesComponent },
   { path: 'post/:id', component: SeepostComponent,
     children: [
       { path: 'comment', component: MakecommentComponent },
@@ -28,7 +31,8 @@ export const routes: Routes = [
       { path: 'edit', component: EditprofileComponent},
     ]
   },
-  { path: 'messages', component: MessageComponent},
+  { path: 'shelf/:id', component: ShelfComponent},
+  { path: 'messages/:id', component: MessageComponent},
   { path: 'login', component: LoginformComponent, },
   { path: 'signup', component: SignupformComponent, },
   { path: '**', redirectTo: '' }

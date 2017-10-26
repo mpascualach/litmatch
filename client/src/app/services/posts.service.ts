@@ -32,8 +32,13 @@ export class PostsService {
       .catch(this.handleError)
   }
 
+  search(a){
+    return this.http.get(`${BASEURL}/search/${a}`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError)
+  }
+
   listPostsById(a){
-    console.log(a)
     return this.http.get(`${BASEURL}/listbyId/${a}`, this.options)
     .map(res => res.json())
     .map(posts => { this.postsUpdate.emit(posts); return posts})
@@ -72,6 +77,12 @@ export class PostsService {
 
   editPost(id, updates){
     return this.http.put(`${BASEURL}/edit/${id}`, updates, this.options)
+    .map(res => res.json())
+    .catch(this.handleError);
+  }
+
+  deletePost(id){
+    return this.http.get(`${BASEURL}/delete/${id}`)
     .map(res => res.json())
     .catch(this.handleError);
   }

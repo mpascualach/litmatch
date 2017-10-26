@@ -1,25 +1,35 @@
 <div class="background teal lighten-1">
-  <div style="text-align:center" class="col s10 links white container">
+  <!-- <div style="text-align:center" class="col s10 links white container">
     <div class="container linksHandler">
       <div class="col s1 link hoverable"><a [routerLink]="['/']">Home</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/login']">Login</a></div>
       <div class="col s1 link hoverable"><a [routerLink]="['/signup']">Signup</a></div>
     </div>
-  </div>
+  </div> -->
   <div class="col s4 sidebar red">
+    <div class="container home">
+      <button name="button" (click)="goHome()">Go home</button>
+    </div>
+    <div class="search container orange z-depth-1">
+      <input type="text" id="search" class="z-depth-4" name="search" placeholder="search">
+      <input type="image" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-128.png" (click)="gotoSearch()" class="input">
+    </div>
+    <div *ngIf="!user " class="container yellow options z-depth darken-1">
+      <p>Want to join us? <a routerLink="signup">Sign up</a> or <a routerLink="login">Log in</a> here </p>
+    </div>
     <div class="container orange userHandler">
       <li><b> Username: </b><span *ngIf="user">{{user.username}}
       </span><span *ngIf="!user">Anonymous</span></li>
     </div>
     <div class="container orange userHandler">
-      <li><b>Messages: </b><a *ngIf="user" href="/messages">{{user.messages.length}}</a>
+      <li><b>Messages: </b><a *ngIf="user" routerLink="/messages/{{user._id}}">{{user.messages.length}}</a>
         <span *ngIf="!user">None</span></li>
     </div>
     <div class="container orange userHandler">
       <li><b>Posts: </b><span *ngIf="!user">None</span></li>
     </div>
     <div class="container orange userHandler userPostHandle">
-      <ul *ngFor="let post of postlist" >
+      <ul *ngFor="let post of postlist">
         <div class="indivUserPost truncate">
           <a routerLink="/post/{{post._id}}">{{post.title}}</a>
         </div>
@@ -27,7 +37,7 @@
     </div>
     <div *ngIf="user" class="buttonHandler container">
       <button class="editProfile" (click)="gotoProfile()">Go to profile</button>
-      <br>
+      <button name="forShelf" (click)="gotoShelf()" class="shelf">Go to shelf</button>
       <button class="logout" (click)="logout()">Logout</button>
     </div>
   </div>

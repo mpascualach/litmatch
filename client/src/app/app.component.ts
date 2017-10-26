@@ -12,28 +12,44 @@ import * as $ from 'jquery';
 })
 export class AppComponent {
   user: any;
+  searchText: any
   postlist: any;
+
   constructor(public auth: AuthService, public posts: PostsService,
   private router: Router) {
-
+    this.auth.isLoggedIn();
+    this.auth.getLoginEventEmitter()
+      .subscribe(user => {
+        this.user = user;
+        console.log(this.user);
+        this.posts.listPostsById(user._id)
+        .subscribe(postlist => {this.postlist=postlist});
+    })
   };
 
   ngOnInit(){
     this.auth.getUser();
-    this.auth.getLoginEventEmitter()
-      .subscribe(user => {
-        this.user = user
-        this.posts.listPostsById(user._id)
-        .subscribe(postlist => {this.postlist=postlist; console.log(this.postlist)
-      });
-    })
+    console.log(this.user)
+  }
+
+  goHome(){
+    this.router.navigate([''])
+  }
+
+  gotoSearch(){
+    this.searchText = $("#search").val();
+    this.router.navigate([`search/${this.searchText}`]);
   }
 
   gotoProfile(){
     this.router.navigate(['user',this.user._id]);
   }
 
+  gotoShelf(){
+    this.router.navigate(['shelf',this.user._id])
+  }
+
   logout(){
-    this.auth.logout().subscribe(()=>this.router.navigate(['/']))
+    this.auth.logout().subscribe(()=>this.router.navigate(['login']))
   }
 }

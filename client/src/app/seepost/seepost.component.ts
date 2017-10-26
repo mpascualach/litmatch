@@ -19,12 +19,13 @@ export class SeepostComponent implements OnInit {
   formInfo = {
     content: ""
   }
+  title="aLitMatch";
 
   constructor(public Post: PostsService, private auth: AuthService,
     private route: ActivatedRoute, private router: Router) {
-    this.user = this.auth.getUser();
+    this.user = this.auth.isLoggedIn();
     this.auth.getLoginEventEmitter()
-      .subscribe(user => this.user = user);
+      .subscribe(user => {this.user = user});
   }
 
   ngOnInit() {
@@ -32,24 +33,11 @@ export class SeepostComponent implements OnInit {
       .subscribe((params) => {
         this.Post.seePost(params.id).subscribe(post => {
           this.post = post;
+          this.post.created_at1 = this.post.created_at.slice(0,10);
+          this.post.created_at2 = this.post.created_at.slice(11,19);
           this.comments = post.comments;
-          // if (post.creator!=this.user._id){
-          //   console.log("toggling");
-          //   $(".editing").hide()
-          // }
         })
       })
-  }
-
-  alternateColor(){
-    for (var i = 0; i < this.comments.length; i++){
-      if (i % 2 === 0){
-        $(".indiv").attr("background-color","blue")
-      }
-      else {
-        $(".indiv").attr("background-color","purple")
-      }
-    }
   }
 
   gotoEdit(post){
@@ -76,8 +64,6 @@ export class SeepostComponent implements OnInit {
     $(`.commentBox${comment._id}`).toggleClass("hide");
   }
 
-
-
   sendComment(post) {
     this.Post.makeComment(post._id, this.formInfo.content, this.user._id)
       .subscribe(comment => { console.log(comment); post.comments.push(comment) })
@@ -89,6 +75,11 @@ export class SeepostComponent implements OnInit {
   deleteComment(comment){
     console.log("deleting");
     this.Post.deleteComment(comment._id);
+  }
+
+  delete(post){
+    this.Post.deletePost(post._id)
+    .subscribe(()=>this.router.navigate(['/']))
   }
 
 }

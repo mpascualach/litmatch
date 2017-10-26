@@ -54,4 +54,7 @@ export class MakepostComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  goHome(){
+    this.router.navigate(['/'])
+  }
 }

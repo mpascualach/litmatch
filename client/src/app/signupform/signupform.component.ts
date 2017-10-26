@@ -16,6 +16,7 @@ export class SignupformComponent implements OnInit {
     password: "",
     email: ""
   }
+  title="aLitMatch"
   error: string;
   constructor(private auth: AuthService, private router: Router) { }
 

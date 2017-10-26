@@ -1,0 +1,53 @@
+.webTitle {
+  margin: 0 auto;
+  position: relative;
+  width: 40%;
+  text-align: center;
+  opacity: 0.8;
+  text-decoration: underline;
+  border-radius: 5px;
+  height: 65px;
+  margin-top: 25px;
+  border: 1px solid black;
+}
+
+.webTitle h2 {
+  margin: 0;
+}
+
+.searchContainer {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 0;
+  padding: 5px;
+}
+
+.searchPortal {
+  padding: 7px;
+  border: 2px solid black;
+  opacity: 0.9;
+}
+
+.portalTitle {
+  text-align: center;
+}
+
+.none {
+  text-align: center;
+}
+
+.indivpost {
+  border: 1px solid black;
+  padding: 5px 20px;
+  margin: 5px;
+  text-align: center;
+}
+
+.credit {
+  font-size: 10px;
+}

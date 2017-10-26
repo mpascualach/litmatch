@@ -1,0 +1,11 @@
+
+
+<div class="shelfHolder white">
+  <input type="text" name="search" class="bookSearcher" placeholder="Search for books...">
+  <div class="searchEntries" *ngFor="let book of booklist">
+    <div class="singleSearchEntry">
+      <li>{{book.title}}</li>
+      <li>{{book.authors}}</li>
+    </div>
+  </div>
+</div>

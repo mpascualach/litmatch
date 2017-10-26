@@ -3,7 +3,6 @@ import { AuthService } from '../services/auth.service';
 
 import { Router } from '@angular/router';
 
-
 interface LoginForm {
   username: string;
   password: string;
@@ -33,7 +32,7 @@ export class LoginformComponent implements OnInit {
       .subscribe(
       (user) => this.successCb(user),
       (err) => this.errorCb(err),
-      () => this.router.navigate([''])
+      () => this.router.navigate(['/'])
       );
   }
 

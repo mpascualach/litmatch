@@ -7,16 +7,55 @@ const debug = require('debug')("angularauth:"+path.basename(__filename).split('.
 
 var authRoutes = express.Router();
 
-/* GET home page. */
+// Users can't execute these functions:
+authRoutes.get('/list', (req, res, next) => {
+  User.find().then(list => {
+      res.json(list);
+    })
+    .reject(err => {
+      res.status(500).json(err)
+    });
+})
+
+authRoutes.get('/deleteall', (req, res, next) => {
+  User.remove().then(message => {
+    return res.status(200).json(message);
+  })
+  .catch(err => res.status(500).json(err));
+})
+//They're just there for me to clean the user database should I need to
+
+//Here's the list of website-accessible functions begin
 authRoutes.post('/signup', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
   let email = req.body.email;
 
-  if (!username || !password || !email)
-    return res.status(400).json({ message: 'Provide username and password' });
+  if (!username && !password && !email)
+    return res.status(400).json({ message: 'Please provide us with a username, password and email' });
+
+  if (!email && !password)
+    return res.status(400).json({ message: 'Please provide us with an email and password' });
+
+  if (!email && !username)
+    return res.status(400).json({ message: 'Please provide us with a username and email' });
+
+  if (!username && !password)
+    return res.status(400).json({ message: 'Please provide us with a username and password' });
+
+  if (!username)
+    return res.status(400).json({ message: 'Please provide us with a username' });
+
+  if (!password)
+    return res.status(400).json({ message: 'Please provide us with a password' });
+
+  if (!email)
+    return res.status(400).json({ message: 'Please provide us with an email' });
 
   debug('Find user in DB');
+
+  if (!email.includes("@"))
+  return res.status(400).json({ message: 'Your e-mail needs to contain an @ sign' });
 
   User.findOne({ username },'_id').exec().then(user =>{
     if(user)
@@ -53,9 +92,12 @@ authRoutes.get('/logout', (req, res, next) => {
 
 authRoutes.get('/loggedin', (req, res, next) => {
   console.log(req.user)
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()){
     return res.status(200).json(req.user);
-  res.status(403).json({ message: 'Unauthorized' });
+  }
+  else {
+    res.status(403).json({ message: 'Unauthorized' });
+  }
 });
 
 
@@ -71,7 +113,6 @@ authRoutes.post('/login', (req, res, next) => {
       if (err)
         return res.status(500).json({ message: 'Something went wrong' });
 
-      // We are now logged in (notice req.user)
       res.status(200).json(req.user);
     });
   })(req, res, next);
